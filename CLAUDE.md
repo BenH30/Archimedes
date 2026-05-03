@@ -11,6 +11,7 @@ Archimedes Metals — custom architectural metal fabrication company in Dallas�
 `design_docs/` contains planning materials (untracked). Key files:
 - `Archimedes_Website Content DRAFT v4_with e-commerce.docx` — page-by-page content drafts, brand messaging, tagline ("Fabricating a World Worth Looking At"), and SEO guidance
 - `Archimedes_Metals_Marketing_Assessment_Chat_April_2026.pdf` — target customer segments, keyword strategy, website recommendations
+- `Archimedes_Metals_Fabrication_Catalog.pdf` — 36-page project showcase; source of truth for the `/projects/` page and the crimson color scheme (`#b0063a`)
 
 ## Stack
 
@@ -44,11 +45,11 @@ Always recompile CSS after editing `static/css/input.css` or adding new Tailwind
 ### Template & CSS Patterns
 
 All pages extend `templates/base.html`. Page sections follow this pattern:
-- Dark hero: `bg-[#08111f]` with diagonal stripe texture (inline style), left brass accent line, location tag with brass `w-8 h-px` rule, `font-display font-black uppercase` headline
-- Section labels: `flex items-center gap-4` with `w-8 h-px bg-[#b5860d]` + small-caps text
-- Brand colors: `#08111f` (dark navy), `#b5860d` (brass), `#0f172a` (navy)
+- Dark hero: `bg-[#08111f]` with diagonal stripe texture (inline style), left crimson accent line, location tag with crimson `w-8 h-px` rule, `font-display font-black uppercase` headline
+- Section labels: `flex items-center gap-4` with `w-8 h-px bg-[#b0063a]` + small-caps text
+- Brand colors: `#08111f` (dark navy), `#b0063a` (crimson), `#cc0a45` (crimson hover), `#0f172a` (navy)
 - No rounded corners on buttons — use sharp edges throughout
-- CTAs: `bg-[#b5860d]` primary, `bg-[#08111f]` secondary, `bg-white text-[#b5860d]` on brass backgrounds
+- CTAs: `bg-[#b0063a]` primary, `bg-[#08111f]` secondary, `bg-white text-[#b0063a]` on crimson backgrounds
 
 ## Page Inventory
 
@@ -66,5 +67,5 @@ All pages extend `templates/base.html`. Page sections follow this pattern:
 | Press Brake & Forming | `/services/press-brake-forming/` | ⬜ Not built |
 | Welding | `/services/welding/` | ⬜ Not built |
 | Coatings & Finishes | `/services/coatings-finishes/` | ⬜ Not built |
-| Projects / Gallery | `/projects/` | ⬜ Not built |
+| Projects / Gallery | `/projects/` | ✅ Complete (21 projects, 7 categories from fabrication catalog) |
 | Shop Built Products | `/shop/` | ⬜ Not built |

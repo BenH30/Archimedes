@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Project Showcase{% endblock %}
+{% block meta_description %}Browse the Archimedes Metals fabrication catalog — panel wall systems, custom signage, surface covers, fencing, floating shelving, framing & trim, and brass features for commercial spaces across Dallas-Fort Worth.{% endblock %}
+
+{% block content %}
+
+<!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #b0063a 30%, #b0063a 70%, transparent);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-px bg-[#b0063a]"></div>
+      <span class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.35em]">Fabrication Catalog</span>
+    </div>
+    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
+      Project<br><span class="text-[#b0063a]">Showcase</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
+      A selection of completed work spanning panel systems, signage, surface covers, fencing, shelving, trim, and brass features. Every project is custom — fabricated to fit the scope, the space, and the standard.
+    </p>
+
+    <!-- Category nav -->
+    <div class="mt-12 flex flex-wrap gap-3">
+      {% for cat in project_categories %}
+      <a href="#{{ cat.category|lower|cut:' '|cut:'&'|cut:'-'|slugify }}" class="text-xs font-semibold uppercase tracking-[0.2em] px-4 py-2 border border-white/15 text-slate-400 hover:border-[#b0063a] hover:text-[#b0063a] transition-colors">
+        {{ cat.category }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- ── PROJECT CATEGORIES ─────────────────────────────────────────────── -->
+{% for cat in project_categories %}
+<section id="{{ cat.category|slugify }}" class="{% cycle 'bg-white' 'bg-slate-50' %} py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- Category header -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-14 pb-8 border-b-2 border-[#b0063a]">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <span class="font-display font-black text-[#b0063a]/30 text-6xl leading-none">{{ forloop.counter|stringformat:"02d" }}</span>
+        </div>
+        <h2 class="font-display font-black text-[#08111f] text-3xl lg:text-4xl uppercase tracking-tight leading-none">
+          {{ cat.category }}
+        </h2>
+      </div>
+      <p class="text-slate-500 text-sm max-w-sm leading-relaxed lg:text-right">{{ cat.description }}</p>
+    </div>
+
+    <!-- Project cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for project in cat.items %}
+      <div class="group border border-slate-100 hover:border-[#b0063a]/30 transition-colors bg-white p-8">
+        <div class="flex items-start justify-between mb-4">
+          <span class="font-display font-black text-[#b0063a]/20 group-hover:text-[#b0063a]/60 text-4xl leading-none transition-colors">
+            {{ forloop.counter|stringformat:"02d" }}
+          </span>
+          <div class="w-6 h-px bg-[#b0063a] mt-4 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <h3 class="font-display font-bold text-[#08111f] text-xl uppercase tracking-tight mb-1 group-hover:text-[#b0063a] transition-colors">
+          {{ project.name }}
+        </h3>
+        <p class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.2em] mb-4">{{ project.location }}</p>
+        <p class="text-slate-500 text-sm leading-relaxed">{{ project.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endfor %}
+
+
+<!-- ── CTA ────────────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-[0.035]" style="background-image: repeating-linear-gradient(135deg, white 0px, white 1px, transparent 1px, transparent 48px);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-px bg-[#b0063a]"></div>
+        <span class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.35em]">Start a Project</span>
+      </div>
+      <h2 class="font-display font-black text-white text-4xl lg:text-6xl uppercase leading-none tracking-tight">
+        Have a Scope<br>We Can Help With?
+      </h2>
+      <p class="text-slate-400 mt-6 text-base leading-relaxed max-w-lg">
+        Send us your drawings, sketches, or photos. We'll respond quickly with a clear conversation about what's possible, what it takes, and how we can help.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4 shrink-0">
+      <a href="/quote/" class="bg-[#b0063a] hover:bg-[#cc0a45] text-white text-xs font-semibold px-10 py-5 uppercase tracking-[0.25em] transition-colors text-center whitespace-nowrap">
+        Request a Quote &rarr;
+      </a>
+      <a href="/about/" class="border border-white/20 hover:border-white/50 text-white text-xs font-semibold px-10 py-5 uppercase tracking-[0.25em] transition-colors text-center whitespace-nowrap">
+        About Archimedes
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

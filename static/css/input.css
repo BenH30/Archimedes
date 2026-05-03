@@ -3,9 +3,9 @@
 @theme {
   --color-brand-dark: #08111f;
   --color-brand-navy: #0f172a;
-  --color-brand-brass: #b5860d;
-  --color-brand-brass-light: #d4a520;
-  --color-brand-warm: #f2ece0;
+  --color-brand-crimson: #b0063a;
+  --color-brand-crimson-light: #cc0a45;
+  --color-brand-warm: #fdf2f4;
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-sans: 'Barlow', sans-serif;
