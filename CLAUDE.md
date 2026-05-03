@@ -47,9 +47,10 @@ Always recompile CSS after editing `static/css/input.css` or adding new Tailwind
 All pages extend `templates/base.html`. Page sections follow this pattern:
 - Dark hero: `bg-[#08111f]` with diagonal stripe texture (inline style), left crimson accent line, location tag with crimson `w-8 h-px` rule, `font-display font-black uppercase` headline
 - Section labels: `flex items-center gap-4` with `w-8 h-px bg-[#b0063a]` + small-caps text
-- Brand colors: `#08111f` (dark navy), `#b0063a` (crimson), `#cc0a45` (crimson hover), `#0f172a` (navy)
+- Brand colors: `#08111f` (dark navy), `#db5648` (primary coral — measured from catalog page headers), `#c7313f` (accent crimson — measured from catalog page footers), `#0f172a` (navy)
 - No rounded corners on buttons — use sharp edges throughout
-- CTAs: `bg-[#b0063a]` primary, `bg-[#08111f]` secondary, `bg-white text-[#b0063a]` on crimson backgrounds
+- CTAs: `bg-[#db5648]` hover `bg-[#c7313f]` primary buttons; `bg-[#08111f]` secondary; `bg-white text-[#db5648]` on coral backgrounds
+- Logo: `static/images/logo-white.png` (white transparent PNG, extracted from catalog cover). Use `class="h-9 w-auto"` in nav, `h-8` in footer
 
 ## Page Inventory
 

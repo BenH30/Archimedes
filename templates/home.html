@@ -11,20 +11,20 @@
   <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
 
   <!-- Left brass accent line -->
-  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #b0063a 30%, #b0063a 70%, transparent);"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
 
   <div class="relative flex-1 flex flex-col max-w-7xl mx-auto px-6 lg:px-12 w-full py-16">
 
     <!-- Location tag -->
     <div class="flex items-center gap-3">
-      <div class="w-8 h-px bg-[#b0063a]"></div>
-      <span class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.35em]">Dallas–Fort Worth, Texas</span>
+      <div class="w-8 h-px bg-[#db5648]"></div>
+      <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Dallas–Fort Worth, Texas</span>
     </div>
 
     <!-- Headline -->
     <h1 class="font-display font-black uppercase leading-[0.88] tracking-[-0.01em] mt-8">
       <span class="block text-[14vw] lg:text-[10.5vw]">Custom</span>
-      <span class="block text-[14vw] lg:text-[10.5vw] text-[#b0063a]">Architectural</span>
+      <span class="block text-[14vw] lg:text-[10.5vw] text-[#db5648]">Architectural</span>
       <span class="block text-[14vw] lg:text-[10.5vw]">Metal</span>
       <span class="block text-[14vw] lg:text-[10.5vw] text-white/50">Fabrication</span>
     </h1>
@@ -36,7 +36,7 @@
           Specialty metal scopes for commercial construction, interiors, signage, and design-forward projects across DFW.
         </p>
         <div class="flex gap-4 shrink-0">
-          <a href="/quote/" class="bg-[#b0063a] hover:bg-[#cc0a45] text-white text-xs font-semibold px-8 py-4 uppercase tracking-[0.2em] transition-colors">
+          <a href="/quote/" class="bg-[#db5648] hover:bg-[#c7313f] text-white text-xs font-semibold px-8 py-4 uppercase tracking-[0.2em] transition-colors">
             Request a Quote
           </a>
           <a href="/projects/" class="border border-white/20 hover:border-white/50 text-white text-xs font-semibold px-8 py-4 uppercase tracking-[0.2em] transition-colors">
@@ -52,7 +52,7 @@
 
 
 <!-- ── MARQUEE ────────────────────────────────────────────────────────── -->
-<div class="bg-[#b0063a] py-4 overflow-hidden" aria-hidden="true">
+<div class="bg-[#db5648] py-4 overflow-hidden" aria-hidden="true">
   <div class="animate-marquee inline-flex whitespace-nowrap">
     <!-- Two identical sets for seamless loop -->
     <span class="inline-flex items-center gap-6 text-white font-display font-bold uppercase tracking-[0.25em] text-sm">
@@ -84,23 +84,23 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div class="flex items-center gap-4 mb-16">
-      <div class="w-8 h-px bg-[#b0063a]"></div>
-      <span class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.35em]">Our Capabilities</span>
+      <div class="w-8 h-px bg-[#db5648]"></div>
+      <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Our Capabilities</span>
     </div>
 
     <div class="divide-y divide-slate-100">
       {% for service in services %}
       <a href="{{ service.url }}" class="group flex items-start gap-8 py-8 -mx-4 px-4 hover:bg-slate-50 transition-colors">
-        <span class="font-display font-black text-[#b0063a]/25 group-hover:text-[#b0063a]/80 text-5xl leading-none transition-colors w-16 shrink-0 pt-0.5">
+        <span class="font-display font-black text-[#db5648]/25 group-hover:text-[#db5648]/80 text-5xl leading-none transition-colors w-16 shrink-0 pt-0.5">
           {{ forloop.counter|stringformat:"02d" }}
         </span>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display font-bold text-[#08111f] text-2xl uppercase tracking-tight group-hover:text-[#b0063a] transition-colors mb-1">
+          <h3 class="font-display font-bold text-[#08111f] text-2xl uppercase tracking-tight group-hover:text-[#db5648] transition-colors mb-1">
             {{ service.name }}
           </h3>
           <p class="text-slate-500 text-sm leading-relaxed">{{ service.description }}</p>
         </div>
-        <div class="text-[#b0063a] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 pt-1">
+        <div class="text-[#db5648] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 pt-1">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </a>
@@ -117,11 +117,11 @@
   <div class="relative max-w-5xl mx-auto px-6 lg:px-12">
     <p class="font-display font-bold text-white text-3xl lg:text-[2.75rem] leading-tight uppercase">
       &ldquo;We help commercial construction and design teams execute custom metal scopes that need to
-      <span class="text-[#b0063a]"> look sharp, fit correctly, hold up over time,</span>
+      <span class="text-[#db5648]"> look sharp, fit correctly, hold up over time,</span>
       and avoid jobsite surprises.&rdquo;
     </p>
     <div class="mt-10 flex items-center gap-4">
-      <div class="w-8 h-px bg-[#b0063a]"></div>
+      <div class="w-8 h-px bg-[#db5648]"></div>
       <span class="text-slate-600 text-xs font-semibold uppercase tracking-[0.3em]">Archimedes Metals — DFW</span>
     </div>
   </div>
@@ -136,13 +136,13 @@
       <!-- Who We Serve -->
       <div>
         <div class="flex items-center gap-4 mb-12">
-          <div class="w-8 h-px bg-[#b0063a]"></div>
-          <span class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.35em]">Who We Serve</span>
+          <div class="w-8 h-px bg-[#db5648]"></div>
+          <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Who We Serve</span>
         </div>
         <ul class="space-y-8">
           {% for audience in audiences %}
           <li class="flex items-start gap-5">
-            <span class="font-display font-black text-[#b0063a]/40 text-4xl leading-none w-12 shrink-0">{{ forloop.counter|stringformat:"02d" }}</span>
+            <span class="font-display font-black text-[#db5648]/40 text-4xl leading-none w-12 shrink-0">{{ forloop.counter|stringformat:"02d" }}</span>
             <div>
               <div class="font-display font-bold text-[#08111f] text-xl uppercase tracking-tight">{{ audience.name }}</div>
               <div class="text-slate-500 text-sm mt-1 leading-relaxed">{{ audience.description }}</div>
@@ -155,12 +155,12 @@
       <!-- Why Archimedes -->
       <div>
         <div class="flex items-center gap-4 mb-12">
-          <div class="w-8 h-px bg-[#b0063a]"></div>
-          <span class="text-[#b0063a] text-xs font-semibold uppercase tracking-[0.35em]">Why Archimedes</span>
+          <div class="w-8 h-px bg-[#db5648]"></div>
+          <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Why Archimedes</span>
         </div>
         <ul class="space-y-8">
           {% for diff in differentiators %}
-          <li class="border-l-2 border-slate-200 hover:border-[#b0063a] pl-6 transition-colors">
+          <li class="border-l-2 border-slate-200 hover:border-[#db5648] pl-6 transition-colors">
             <div class="font-semibold text-[#08111f] mb-1">{{ diff.name }}</div>
             <div class="text-slate-500 text-sm leading-relaxed">{{ diff.description }}</div>
           </li>
@@ -180,7 +180,7 @@
 
 
 <!-- ── CTA ────────────────────────────────────────────────────────────── -->
-<section class="bg-[#b0063a] py-20">
+<section class="bg-[#db5648] py-20">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
     <div>
       <h2 class="font-display font-black text-white text-5xl lg:text-6xl uppercase leading-none tracking-tight">
@@ -190,7 +190,7 @@
         Send us your drawings, sketches, or photos. We'll respond quickly with a clear conversation about what's possible.
       </p>
     </div>
-    <a href="/quote/" class="bg-white text-[#b0063a] hover:bg-red-50 font-bold text-xs px-10 py-5 uppercase tracking-[0.25em] transition-colors whitespace-nowrap">
+    <a href="/quote/" class="bg-white text-[#db5648] hover:bg-red-50 font-bold text-xs px-10 py-5 uppercase tracking-[0.25em] transition-colors whitespace-nowrap">
       Request a Quote &rarr;
     </a>
   </div>

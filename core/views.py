@@ -42,16 +42,19 @@ PROJECTS = [
             {
                 "name": "Partition 01",
                 "location": "Office Reception | Denton, TX",
-                "description": "A decorative wall panel system installed behind a reception desk at a new building's main entrance. The panel mimics the look of a grille on a semitruck, featuring offset ellipses as the perforation pattern. Constructed from ½″ aluminum with a chrome finish, the backlit panels were engineered for a seamless appearance with no exposed fasteners or visible welds.",
+                "image": "partition-01",
+                "description": "A decorative wall panel system installed behind a reception desk at a new building’s main entrance. The panel mimics the look of a grille on a semitruck, featuring offset ellipses as the perforation pattern. Constructed from ½″ aluminum with a chrome finish, the backlit panels were engineered for a seamless appearance with no exposed fasteners or visible welds.",
             },
             {
                 "name": "Partition 02",
                 "location": "Spec Suite | Dallas, TX",
+                "image": "partition-02",
                 "description": "Floor-to-ceiling partition panels fabricated from ¼″ aluminum featuring a square perforation pattern that provides visual interest and spatial separation. The panels create a lightweight yet structurally stable divider that defines the space without fully enclosing it.",
             },
             {
                 "name": "Outdoor Canopy",
                 "location": "Porte-Cochère of Experience Center | Coppell, TX",
+                "image": "outdoor-canopy",
                 "description": "A canopy structure built using a 5-by-7 array of perforated aluminum panels designed to provide sun relief while maintaining an open, airy visual connection to the surrounding area. Each panel is crafted from ¼″ thick sheet aluminum, powder coated to match the building’s exterior.",
             },
         ],
@@ -63,21 +66,25 @@ PROJECTS = [
             {
                 "name": "Identification Signage 01",
                 "location": "Wildflower Community | Pagosa Springs, CO",
+                "image": "signage-wildflower",
                 "description": "Entry signage for a residential community at the edge of the San Juan National Forest. Designed with creative freedom, the sign incorporates the silhouette of Pagosa Peak and celebrates the area’s signature wildflower landscape.",
             },
             {
                 "name": "Identification Signage 02",
                 "location": "Eagle Surveying | Denton, TX",
+                "image": "signage-eagle-02",
                 "description": "Main building signage set against a matte black panel with precision-cut lettering and a dimensional blue eagle logo. Soft backlighting creates a warm halo effect in the evening while maintaining a refined, understated appearance during the day.",
             },
             {
                 "name": "Identification Signage 03",
                 "location": "Eagle Surveying | Denton, TX",
+                "image": "signage-eagle-03",
                 "description": "A wrap-around feature displaying the building number and street name in cut-through lettering with hidden bracketry and lighting that creates a floating halo effect. The black metal, warm lighting, and wood accents work in concert with the architectural transition from wood to brick.",
             },
             {
                 "name": "Wayfinding Signage 01",
                 "location": "Conference Room Corridor | Frisco, TX",
+                "image": "signage-wayfinding",
                 "description": "Conference room wayfinding with a creative edge — each matte black panel is mounted on a horizontal bracket and features a cutout NFL team logo (Broncos, Cowboys, Saints, Texans), creating consistent visual flow and character throughout the corridor.",
             },
         ],
@@ -89,16 +96,19 @@ PROJECTS = [
             {
                 "name": "Surface Cover 01 & 02",
                 "location": "Pizza Counter in Experience Center | Coppell, TX",
+                "image": "surface-cover-01-02",
                 "description": "A large overhead vent hood cover in ⅛″ aluminum with a matte brown finish, paired with a perforated white aluminum bar face featuring a repeating triangular pattern. Aluminum sectioning camouflages the seams. Integrated lighting casts soft highlights that accentuate the depth of the cutouts.",
             },
             {
                 "name": "Surface Cover 03",
                 "location": "Kitchen in Experience Center | Coppell, TX",
+                "image": "surface-cover-03",
                 "description": "Copper-colored panels spanning a dramatic 28 by 36 feet across two columns and a furdown above the kitchen area. A button-mount placement method created the illusion of an overlaid diamond lattice before permanent adhesion.",
             },
             {
                 "name": "Surface Cover 04",
                 "location": "Elevator Lobby Area | Dallas, TX",
+                "image": "surface-cover-04",
                 "description": "Perforated ⅛″ aluminum panels finished in matte flat black powder coat, mirroring existing lobby panels while incorporating subtle modifications to integrate with surrounding millwork. The perforations reveal the painted millwork underneath, providing dimension and breaking up the monochromatic tone.",
             },
         ],
@@ -110,11 +120,13 @@ PROJECTS = [
             {
                 "name": "Louvered Fence 01",
                 "location": "HVAC Privacy & Retainment Area | Coppell, TX",
+                "image": "fence-louvered-01",
                 "description": "A 275-foot perimeter fence enclosing a service area with HVAC equipment and dumpsters. Every post was mapped, anchored, and leveled despite significant grade challenges. Finished in grey powder coat with saloon-style swing gates throughout for easy service access.",
             },
             {
                 "name": "Louvered Fence 02",
                 "location": "Privacy Entryway | Dallas, TX",
+                "image": "fence-louvered-02",
                 "description": "A privacy barrier built with a sturdy tube frame, combining solid panels and vertical louver blades for airflow without full enclosure. A custom ½″ aluminum bowtie brace adds visual interest. A push gate allows resident access while restricting external entry.",
             },
         ],
@@ -126,11 +138,13 @@ PROJECTS = [
             {
                 "name": "Floating Shelving 01",
                 "location": "Coffee Counter in Experience Center | Coppell, TX",
+                "image": "shelving-01",
                 "description": "An 18.5-foot shelf with a smooth oval form that subtly echoes the shape of a coffee bean. Hidden mounting tabs create the floating effect. Anodized to a deep coffee brown that complements surrounding textures. Curved vertical ends provide a bold visual anchor without appearing bulky.",
             },
             {
                 "name": "Floating Shelving 02",
                 "location": "Bar Area in Experience Center | Coppell, TX",
+                "image": "shelving-02",
                 "description": "Only 1″ thick overall, these shelves achieve their floating effect through an aluminum sheath covering an internal frame that mounts directly inside the wall. A satin black finish balances visual weight with refined detailing.",
             },
         ],
@@ -142,26 +156,31 @@ PROJECTS = [
             {
                 "name": "Custom-Fit Framing 01",
                 "location": "Showroom in Experience Center | Coppell, TX",
+                "image": "framing-01",
                 "description": "A display frame constructed from stacked square aluminum tubing (3″×3″ and 2″×2″), creating a recessed channel for integrated lighting. Corners are secured with internal joints and mechanical fasteners. Hidden bracketry continues the minimal floating aesthetic.",
             },
             {
                 "name": "Custom-Fit Framing 02",
                 "location": "Indoor-Outdoor Patio | Dallas, TX",
+                "image": "framing-02",
                 "description": "Fountain frames designed to address safety hazards and resident dissatisfaction while elevating the space’s clean, modern aesthetic. The covers minimize overspray, protecting patio furniture and residents from the water feature.",
             },
             {
                 "name": "Decorative Trim 01",
                 "location": "Lounge Area in Experience Center | Coppell, TX",
+                "image": "trim-01",
                 "description": "A minimalist aluminum angle piece wrapping the full perimeter of a fireplace opening, providing a clean transition between large-format stone tile and glass. Anodized satin black with no exposed fasteners, keeping the element visually quiet.",
             },
             {
                 "name": "Decorative Trim 02",
                 "location": "Experience Center | Coppell, TX",
+                "image": "trim-02",
                 "description": "Custom-formed aluminum trim lining curved archways, hand-shaped to follow each arch’s curve. Anodized to a warm champagne brass tone, providing an elegant transition between tile-clad walls and interior spaces.",
             },
             {
                 "name": "Decorative Trim 03",
                 "location": "Warewash Area in Experience Center | Coppell, TX",
+                "image": "trim-03",
                 "description": "Stainless steel top trim capping the tile-clad wall surrounding a dishwashing conveyor. Fit-in-field with a hand-brushed finish, this industrial trim harmonizes with the machinery and polishes off the open-concept layout.",
             },
         ],
@@ -173,11 +192,13 @@ PROJECTS = [
             {
                 "name": "Brass Chandelier",
                 "location": "Deli Counter in Experience Center | Coppell, TX",
+                "image": "brass-chandelier",
                 "description": "A statement chandelier with a cage-like frame made from 2″×2″ brushed brass tubing, stretching just over 25 feet in length. Composed of 63 individually fabricated segments with custom aluminum tube joinery hidden inside each connection. Globe pendant lights align rhythmically with the counter below.",
             },
             {
                 "name": "Brass Handrails",
                 "location": "Hotel Lobby | Dallas, TX",
+                "image": "brass-handrails",
                 "description": "A retrofit of secondary railing supports and anchoring for ADA compliance, fabricated from brushed brass bar stock. Installed in an alternating off-center pattern — a small but intentional detail that adds visual interest without compromising function.",
             },
         ],

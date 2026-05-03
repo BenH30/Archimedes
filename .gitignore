@@ -223,3 +223,6 @@ staticfiles/
 
 # Claude Code
 .claude/worktrees/
+
+# Design documents (large binaries, kept local)
+design_docs/
