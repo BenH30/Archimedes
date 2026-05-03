@@ -10,21 +10,27 @@ This is a new Python project in early setup. No source code has been committed y
 
 `design_docs/` contains planning materials for the Archimedes Metals website and e-commerce build (untracked). Consult these for product/content context.
 
-## Stack Indicators
+## Stack
 
-The `.gitignore` anticipates:
-- **Web framework:** Django or Flask
-- **Linter:** Ruff
-- **Task queue:** Celery + Redis or RabbitMQ
-- **Package manager:** uv, poetry, pipenv, or pdm (TBD)
+- **Framework:** Django 6
+- **Package manager:** uv
+- **Database:** SQLite (local), PostgreSQL (production)
+- **Python:** 3.12
 
 ## Commands
 
-_Fill in once the project is initialized:_
-
 ```bash
-# Install dependencies
-# Run dev server
-# Run tests
-# Lint
+uv run python manage.py runserver   # start dev server at localhost:8000
+uv run python manage.py migrate     # apply database migrations
+uv run python manage.py makemigrations  # generate migrations after model changes
+uv run python manage.py createsuperuser # create admin user
+uv run python manage.py test        # run tests
 ```
+
+## Architecture
+
+- `archimedes/` — Django project config (settings, root URLs, wsgi/asgi)
+- `manage.py` — Django management entry point
+- New features go in Django apps: `uv run python manage.py startapp <name>`
+- Database: SQLite (`db.sqlite3`) for local dev
+- Dependencies managed with uv (`pyproject.toml` + `uv.lock`)
