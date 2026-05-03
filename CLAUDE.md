@@ -60,13 +60,13 @@ All pages extend `templates/base.html`. Page sections follow this pattern:
 | About | `/about/` | ✅ Complete |
 | Quote / Contact | `/quote/` | ✅ Complete (form renders; email sending not yet wired) |
 | Privacy Policy | `/privacy/` | ✅ Complete |
-| Architectural Metalwork | `/services/architectural-metalwork/` | ⬜ Not built |
-| Metal Wall Panels | `/services/metal-wall-panels/` | ⬜ Not built |
-| Custom Metal Signage | `/services/custom-metal-signage/` | ⬜ Not built |
-| Fencing, Screens & Enclosures | `/services/fencing-screens-enclosures/` | ⬜ Not built |
-| Shelving, Trim & Brass Features | `/services/shelving-trim-brass/` | ⬜ Not built |
-| Press Brake & Forming | `/services/press-brake-forming/` | ⬜ Not built |
-| Welding | `/services/welding/` | ⬜ Not built |
-| Coatings & Finishes | `/services/coatings-finishes/` | ⬜ Not built |
+| Architectural Metalwork | `/services/architectural-metalwork/` | ✅ Complete |
+| Metal Wall Panels | `/services/metal-wall-panels/` | ✅ Complete |
+| Custom Metal Signage | `/services/custom-metal-signage/` | ✅ Complete |
+| Fencing, Screens & Enclosures | `/services/fencing-screens-enclosures/` | ✅ Complete |
+| Shelving, Trim & Brass Features | `/services/shelving-trim-brass/` | ✅ Complete |
+| Press Brake & Forming | `/services/press-brake-forming/` | ✅ Complete |
+| Welding | `/services/welding/` | ✅ Complete |
+| Coatings & Finishes | `/services/coatings-finishes/` | ✅ Complete |
 | Projects / Gallery | `/projects/` | ✅ Complete (21 projects, 7 categories from fabrication catalog) |
 | Shop Built Products | `/shop/` | ⬜ Not built |

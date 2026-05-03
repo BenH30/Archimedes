@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ service.name }}{% endblock %}
+{% block meta_description %}{{ service.tagline }} — Archimedes Metals, custom architectural metal fabrication in Dallas-Fort Worth.{% endblock %}
+
+{% block content %}
+
+<!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-px bg-[#db5648]"></div>
+      <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Custom Metalwork — Dallas–Fort Worth</span>
+    </div>
+    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
+      {{ service.name }}
+    </h1>
+    <p class="text-slate-400 text-lg max-w-xl leading-relaxed">{{ service.tagline }}</p>
+  </div>
+</section>
+
+
+<!-- ── CONTENT ────────────────────────────────────────────────────────── -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Description + CTA -->
+      <div>
+        {% for para in service.description %}
+        <p class="{% if forloop.first %}text-slate-700 text-lg leading-relaxed mb-6{% else %}text-slate-600 leading-relaxed{% if not forloop.last %} mb-6{% endif %}{% endif %}">{{ para }}</p>
+        {% endfor %}
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="/quote/" class="inline-flex items-center gap-3 bg-[#db5648] hover:bg-[#c7313f] text-white text-xs font-semibold px-8 py-4 uppercase tracking-[0.2em] transition-colors">
+            Request a Quote
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/projects/" class="inline-flex items-center gap-3 border border-slate-300 hover:border-[#db5648] text-slate-600 hover:text-[#db5648] text-xs font-semibold px-8 py-4 uppercase tracking-[0.2em] transition-colors">
+            View Projects
+          </a>
+        </div>
+      </div>
+
+      <!-- Capabilities -->
+      <div class="bg-[#08111f] text-white p-10 lg:p-12">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-8 h-px bg-[#db5648]"></div>
+          <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Capabilities</span>
+        </div>
+        <ul class="space-y-4">
+          {% for cap in service.capabilities %}
+          <li class="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+            <span class="text-[#db5648] mt-0.5 shrink-0">&#10003;</span>
+            {{ cap }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FEATURED WORK ──────────────────────────────────────────────────── -->
+{% if service.featured_images %}
+<section class="py-20 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="flex items-center justify-between mb-12">
+      <div class="flex items-center gap-4">
+        <div class="w-8 h-px bg-[#db5648]"></div>
+        <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Featured Work</span>
+      </div>
+      <a href="/projects/" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 hover:text-[#db5648] transition-colors">
+        View All Projects &rarr;
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      {% for img in service.featured_images %}
+      <a href="/projects/" class="group block aspect-video overflow-hidden bg-slate-200 relative">
+        <img src="{% static 'images/projects/' %}{{ img }}.jpg"
+             alt="{{ service.name }} — project photo"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ── CTA ────────────────────────────────────────────────────────────── -->
+<section class="bg-[#db5648] py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+    <div>
+      <h2 class="font-display font-black text-white text-4xl lg:text-5xl uppercase leading-none">Have a Scope We Can Help With?</h2>
+      <p class="text-red-100 mt-4 text-base max-w-md leading-relaxed">Tell us about your project. We'll respond quickly with a clear conversation about what's possible.</p>
+    </div>
+    <div class="flex flex-col gap-3 shrink-0">
+      <a href="/quote/" class="bg-white text-[#db5648] hover:bg-red-50 font-bold text-xs px-10 py-5 uppercase tracking-[0.25em] transition-colors text-center whitespace-nowrap">
+        Request a Quote &rarr;
+      </a>
+      <a href="/projects/" class="border border-white/40 hover:border-white text-white font-bold text-xs px-10 py-5 uppercase tracking-[0.25em] transition-colors text-center whitespace-nowrap">
+        View All Projects
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

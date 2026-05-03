@@ -47,13 +47,18 @@
           {{ cat.category }}
         </h2>
       </div>
-      <p class="text-slate-500 text-sm max-w-sm leading-relaxed lg:text-right">{{ cat.description }}</p>
+      <div class="lg:text-right">
+        <p class="text-slate-500 text-sm max-w-sm leading-relaxed mb-3">{{ cat.description }}</p>
+        {% if cat.service_url %}
+        <a href="{{ cat.service_url }}" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#db5648] hover:text-[#c7313f] transition-colors">View Service &rarr;</a>
+        {% endif %}
+      </div>
     </div>
 
     <!-- Project cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {% for project in cat.items %}
-      <div class="group bg-white border border-slate-100 hover:border-[#db5648]/40 transition-colors overflow-hidden flex flex-col">
+      <div class="project-card group bg-white border border-slate-100 hover:border-[#db5648]/40 transition-colors overflow-hidden flex flex-col cursor-pointer" role="button" tabindex="0">
 
         <!-- Photo -->
         <div class="aspect-video overflow-hidden bg-slate-100 relative">
@@ -112,5 +117,136 @@
     </div>
   </div>
 </section>
+
+
+<!-- ── LIGHTBOX ───────────────────────────────────────────────────────── -->
+<div id="lightbox" class="fixed inset-0 z-50 flex-col bg-[#0a0e14]" style="display:none;" role="dialog" aria-modal="true" aria-label="Project photo viewer">
+
+  <!-- Top bar -->
+  <div class="flex items-center justify-between px-5 py-3 shrink-0 border-b border-white/5">
+    <span id="lb-category" class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.25em]"></span>
+    <div class="flex items-center gap-6">
+      <span id="lb-counter" class="text-slate-500 text-xs font-mono tabular-nums"></span>
+      <button onclick="closeLightbox()" aria-label="Close" class="text-slate-400 hover:text-white transition-colors p-1">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Image area -->
+  <div class="flex-1 flex items-center min-h-0 relative">
+    <button onclick="lbPrev()" aria-label="Previous project" class="absolute left-0 top-0 bottom-0 flex items-center justify-center w-14 lg:w-20 text-slate-500 hover:text-white transition-colors z-10">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="flex-1 flex items-center justify-center p-4 lg:p-10 min-w-0 min-h-0">
+      <img id="lb-img" src="" alt="" class="max-w-full object-contain block" style="max-height: calc(100vh - 210px);">
+    </div>
+    <button onclick="lbNext()" aria-label="Next project" class="absolute right-0 top-0 bottom-0 flex items-center justify-center w-14 lg:w-20 text-slate-500 hover:text-white transition-colors z-10">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <!-- Info + thumbnails -->
+  <div class="shrink-0 bg-[#08111f] border-t border-white/5 px-5 lg:px-10 py-5">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start gap-5">
+      <div class="flex-1 min-w-0">
+        <h3 id="lb-name" class="font-display font-bold text-white text-lg lg:text-xl uppercase tracking-tight"></h3>
+        <p id="lb-location" class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.2em] mt-1"></p>
+        <p id="lb-desc" class="text-slate-400 text-sm leading-relaxed mt-2 max-w-2xl hidden lg:block"></p>
+      </div>
+      <div id="lb-thumbs" class="flex gap-2 shrink-0 flex-wrap"></div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+const PROJECT_IMG_BASE = "{% static 'images/projects/' %}";
+const PROJECTS = {{ projects_json|safe }};
+let lbOpen = false;
+let lb_project = 0;
+let lb_image = 0;
+
+function openLightbox(idx) {
+  lb_project = idx;
+  lb_image = 0;
+  renderLightbox();
+  document.getElementById('lightbox').style.display = 'flex';
+  lbOpen = true;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  lbOpen = false;
+  document.body.style.overflow = '';
+}
+
+function lbPrev() {
+  lb_project = (lb_project - 1 + PROJECTS.length) % PROJECTS.length;
+  lb_image = 0;
+  renderLightbox();
+}
+
+function lbNext() {
+  lb_project = (lb_project + 1) % PROJECTS.length;
+  lb_image = 0;
+  renderLightbox();
+}
+
+function lbSetImage(i) {
+  lb_image = i;
+  renderLightbox();
+}
+
+function renderLightbox() {
+  const p = PROJECTS[lb_project];
+  const img = document.getElementById('lb-img');
+  img.src = PROJECT_IMG_BASE + p.images[lb_image] + '.jpg';
+  img.alt = p.name;
+  document.getElementById('lb-name').textContent = p.name;
+  document.getElementById('lb-location').textContent = p.location;
+  document.getElementById('lb-category').textContent = p.category;
+  document.getElementById('lb-desc').textContent = p.description;
+  document.getElementById('lb-counter').textContent = (lb_project + 1) + ' of ' + PROJECTS.length;
+
+  const thumbs = document.getElementById('lb-thumbs');
+  thumbs.innerHTML = '';
+  if (p.images.length > 1) {
+    p.images.forEach(function(imgSlug, i) {
+      const btn = document.createElement('button');
+      btn.style.width = '64px';
+      btn.style.height = '48px';
+      btn.style.overflow = 'hidden';
+      btn.style.flexShrink = '0';
+      btn.style.border = '2px solid ' + (i === lb_image ? '#db5648' : 'transparent');
+      btn.style.opacity = i === lb_image ? '1' : '0.5';
+      btn.style.transition = 'opacity 0.15s';
+      btn.setAttribute('aria-label', 'Photo ' + (i + 1));
+      btn.addEventListener('click', function(e) { e.stopPropagation(); lbSetImage(i); });
+      const el = document.createElement('img');
+      el.src = PROJECT_IMG_BASE + imgSlug + '.jpg';
+      el.alt = '';
+      el.style.width = '100%';
+      el.style.height = '100%';
+      el.style.objectFit = 'cover';
+      btn.appendChild(el);
+      thumbs.appendChild(btn);
+    });
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!lbOpen) return;
+  if (e.key === 'Escape') closeLightbox();
+  else if (e.key === 'ArrowLeft') lbPrev();
+  else if (e.key === 'ArrowRight') lbNext();
+});
+
+document.querySelectorAll('.project-card').forEach(function(card, i) {
+  card.addEventListener('click', function() { openLightbox(i); });
+});
+</script>
 
 {% endblock %}
