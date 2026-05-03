@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+{% block meta_description %}Archimedes Metals is a family-owned, craft-driven metal fabrication company serving commercial construction, architecture, and design across Dallas-Fort Worth.{% endblock %}
+
+{% block content %}
+
+<!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #b5860d 30%, #b5860d 70%, transparent);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-px bg-[#b5860d]"></div>
+      <span class="text-[#b5860d] text-xs font-semibold uppercase tracking-[0.35em]">Dallas–Fort Worth, Texas</span>
+    </div>
+    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
+      About<br>Archimedes<br><span class="text-[#b5860d]">Metals</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-xl leading-relaxed">
+      Family-owned. Craft-driven. Built for complex custom metalwork.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── COMPANY STORY ─────────────────────────────────────────────────── -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-8 h-px bg-[#b5860d]"></div>
+          <span class="text-[#b5860d] text-xs font-semibold uppercase tracking-[0.35em]">Who We Are</span>
+        </div>
+        <p class="text-slate-700 text-lg leading-relaxed mb-6">
+          Archimedes Metals is a family-owned decorative metal fabrication company serving commercial construction, architecture, design, and specialty trade partners across Dallas–Fort Worth and beyond.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Our roots are in custom, performance-driven fabrication, where precision, durability, and accountability are not optional. That background shaped how we approach architectural and decorative metalwork today. We are not interested in becoming a commodity metal shop. We are building a company known for design sensitivity, clear communication, exceptional craftsmanship, and the ability to solve problems that don't fit neatly into a catalog.
+        </p>
+        <p class="text-slate-600 leading-relaxed">
+          Whether we are fabricating signage, panels, screens, enclosures, shelving, trim, brass features, formed components, welded assemblies, or specialty details, our goal is the same: understand the intent, communicate clearly, build it right, and deliver a result the project team is proud to put their name on.
+        </p>
+      </div>
+
+      <div class="bg-[#08111f] text-white p-10 lg:p-12">
+        <p class="font-display font-black text-2xl lg:text-3xl uppercase text-[#b5860d] leading-tight mb-6">
+          "Fabricating a World Worth Looking At."
+        </p>
+        <p class="text-slate-300 leading-relaxed mb-8">
+          This tagline captures the way Archimedes wants to show up in the market: as a team that cares deeply about design, quality, craftsmanship, and the experience created by the finished work.
+        </p>
+        <ul class="space-y-3 text-sm text-slate-400">
+          <li class="flex items-start gap-2"><span class="text-[#b5860d] mt-0.5">&#10003;</span> Family-owned accountability</li>
+          <li class="flex items-start gap-2"><span class="text-[#b5860d] mt-0.5">&#10003;</span> Design-sensitive fabrication for visible commercial spaces</li>
+          <li class="flex items-start gap-2"><span class="text-[#b5860d] mt-0.5">&#10003;</span> Complex custom metalwork without the chaos</li>
+          <li class="flex items-start gap-2"><span class="text-[#b5860d] mt-0.5">&#10003;</span> Woman-Owned Business (WBE Certified)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CORE VALUES ────────────────────────────────────────────────────── -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-4 mb-14">
+      <div class="w-8 h-px bg-[#b5860d]"></div>
+      <span class="text-[#b5860d] text-xs font-semibold uppercase tracking-[0.35em]">How We Work</span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for value in values %}
+      <div class="border-t-2 border-[#b5860d] pt-6">
+        <h3 class="font-display font-bold text-[#08111f] text-xl uppercase tracking-tight mb-3">{{ value.title }}</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">{{ value.body }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA ────────────────────────────────────────────────────────────── -->
+<section class="bg-[#b5860d] py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+    <div>
+      <h2 class="font-display font-black text-white text-4xl lg:text-5xl uppercase leading-none">Ready to Work Together?</h2>
+      <p class="text-amber-100 mt-4 text-base max-w-md leading-relaxed">Tell us about your project. We'll respond quickly with a clear conversation about what's possible.</p>
+    </div>
+    <a href="/quote/" class="bg-white text-[#b5860d] hover:bg-amber-50 font-bold text-xs px-10 py-5 uppercase tracking-[0.25em] transition-colors whitespace-nowrap">
+      Request a Quote &rarr;
+    </a>
+  </div>
+</section>
+
+{% endblock %}

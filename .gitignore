@@ -220,3 +220,6 @@ __marimo__/
 # Django
 db.sqlite3
 staticfiles/
+
+# Claude Code
+.claude/worktrees/

@@ -1,9 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-dark: #0f172a;
-  --color-brand-navy: #1e3a5f;
+  --color-brand-dark: #08111f;
+  --color-brand-navy: #0f172a;
   --color-brand-brass: #b5860d;
   --color-brand-brass-light: #d4a520;
-  --color-brand-steel: #64748b;
+  --color-brand-warm: #f2ece0;
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-sans: 'Barlow', sans-serif;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
 }

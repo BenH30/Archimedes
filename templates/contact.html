@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Request a Quote{% endblock %}
+{% block meta_description %}Request a quote from Archimedes Metals for custom architectural metal fabrication in Dallas-Fort Worth. Send your drawings, sketches, or project details.{% endblock %}
+
+{% block content %}
+
+<!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #b5860d 30%, #b5860d 70%, transparent);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-px bg-[#b5860d]"></div>
+      <span class="text-[#b5860d] text-xs font-semibold uppercase tracking-[0.35em]">Get in Touch</span>
+    </div>
+    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
+      Request<br>a <span class="text-[#b5860d]">Quote</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-xl leading-relaxed">
+      Share your drawings, sketches, or photos. We'll respond quickly with a clear conversation about scope, timeline, and what's possible.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── FORM + SIDEBAR ─────────────────────────────────────────────────── -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1 order-2 lg:order-1">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-8 h-px bg-[#b5860d]"></div>
+          <span class="text-[#b5860d] text-xs font-semibold uppercase tracking-[0.35em]">What Helps Us Quote Faster</span>
+        </div>
+        <ul class="space-y-3 text-sm text-slate-600 mb-10">
+          {% for item in quote_needs %}
+          <li class="flex items-start gap-2">
+            <span class="text-[#b5860d] font-bold mt-0.5">&rarr;</span>
+            {{ item }}
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="border-t border-slate-100 pt-8">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-8 h-px bg-[#b5860d]"></div>
+            <span class="text-[#b5860d] text-xs font-semibold uppercase tracking-[0.35em]">Who We Work With</span>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li>General Contractors</li>
+            <li>Architects &amp; Interior Designers</li>
+            <li>Commercial Owners &amp; Developers</li>
+            <li>Sign &amp; Millwork Companies</li>
+            <li>Restaurants, Retail &amp; Hospitality</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="lg:col-span-2 order-1 lg:order-2">
+
+        {% if submitted %}
+        <div class="bg-slate-50 border border-slate-200 p-10 text-center">
+          <div class="text-[#b5860d] text-4xl mb-4">&#10003;</div>
+          <h2 class="font-display font-bold text-2xl uppercase text-[#08111f] mb-3">We Got Your Request</h2>
+          <p class="text-slate-500 leading-relaxed max-w-md mx-auto">We'll review your project details and be in touch shortly. If you have additional drawings or photos to share, reply to the confirmation email.</p>
+        </div>
+
+        {% else %}
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+          {% csrf_token %}
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Name *</label>
+              <input type="text" name="name" required class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors" placeholder="Your name">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Company</label>
+              <input type="text" name="company" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors" placeholder="Company name">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Email *</label>
+              <input type="email" name="email" required class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors" placeholder="your@email.com">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Phone</label>
+              <input type="tel" name="phone" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors" placeholder="(555) 000-0000">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Your Role</label>
+            <select name="role" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors bg-white">
+              <option value="">Select your role…</option>
+              <option>General Contractor / Construction Team</option>
+              <option>Architect</option>
+              <option>Interior Designer</option>
+              <option>Commercial Property Owner / Developer</option>
+              <option>Sign Company</option>
+              <option>Millwork / Interior Contractor</option>
+              <option>Restaurant / Retail / Hospitality</option>
+              <option>Other Subcontractor</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Project Location</label>
+              <input type="text" name="location" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors" placeholder="City, TX">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Desired Timeline / Bid Deadline</label>
+              <input type="text" name="timeline" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors" placeholder="e.g. 6 weeks, ASAP, Q3 2026">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Service Needed</label>
+            <select name="service" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors bg-white">
+              <option value="">Select a service…</option>
+              <option>Architectural Metalwork</option>
+              <option>Metal Wall Panels</option>
+              <option>Custom Metal Signage</option>
+              <option>Fencing, Screens &amp; Enclosures</option>
+              <option>Shelving, Trim &amp; Brass Features</option>
+              <option>Press Brake &amp; Forming</option>
+              <option>Welding</option>
+              <option>Coatings &amp; Finishes</option>
+              <option>Multiple / Not Sure</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Do you have drawings, sketches, or photos?</label>
+            <select name="drawings_available" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors bg-white">
+              <option value="">Select…</option>
+              <option>Yes — formal drawings / CAD</option>
+              <option>Yes — sketches or photos</option>
+              <option>Partial — some reference material</option>
+              <option>No — I can describe the scope</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Is installation needed?</label>
+            <select name="installation" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors bg-white">
+              <option value="">Select…</option>
+              <option>Yes</option>
+              <option>No — fabrication only</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Project Description *</label>
+            <textarea name="description" required rows="5" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#b5860d] transition-colors resize-none" placeholder="Describe your project — scope, materials, finish requirements, quantities, or anything else that helps us understand what you need."></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-700 mb-2">Upload Drawings, Photos, or Sketches</label>
+            <input type="file" name="attachments" multiple accept=".pdf,.png,.jpg,.jpeg,.dwg,.dxf,.docx" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-600 focus:outline-none focus:border-[#b5860d] transition-colors bg-white">
+            <p class="text-xs text-slate-400 mt-2">PDF, JPG, PNG, DWG, DXF, DOCX accepted. Max 10 MB per file.</p>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" class="bg-[#08111f] hover:bg-[#1e3a5f] text-white text-xs font-semibold px-10 py-4 uppercase tracking-[0.2em] transition-colors w-full sm:w-auto">
+              Submit Quote Request &rarr;
+            </button>
+          </div>
+
+        </form>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
