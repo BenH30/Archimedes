@@ -127,22 +127,22 @@
     <span id="lb-category" class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.25em]"></span>
     <div class="flex items-center gap-6">
       <span id="lb-counter" class="text-slate-500 text-xs font-mono tabular-nums"></span>
-      <button onclick="closeLightbox()" aria-label="Close" class="text-slate-400 hover:text-white transition-colors p-1">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      <button onclick="closeLightbox()" aria-label="Close" class="text-white hover:text-[#db5648] transition-colors px-3 py-2 -mr-2">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
 
   <!-- Image area -->
-  <div class="flex-1 flex items-center min-h-0 relative">
-    <button onclick="lbPrev()" aria-label="Previous project" class="absolute left-0 top-0 bottom-0 flex items-center justify-center w-14 lg:w-20 text-slate-500 hover:text-white transition-colors z-10">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+  <div id="lb-imgarea" class="flex-1 flex items-center min-h-0 relative">
+    <button onclick="lbPrev()" aria-label="Previous project" class="absolute z-10 flex items-center justify-center w-12 h-12 text-white transition-colors" style="left: 16px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55);" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
     <div class="flex-1 flex items-center justify-center p-4 lg:p-10 min-w-0 min-h-0">
       <img id="lb-img" src="" alt="" class="max-w-full object-contain block" style="max-height: calc(100vh - 210px);">
     </div>
-    <button onclick="lbNext()" aria-label="Next project" class="absolute right-0 top-0 bottom-0 flex items-center justify-center w-14 lg:w-20 text-slate-500 hover:text-white transition-colors z-10">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    <button onclick="lbNext()" aria-label="Next project" class="absolute z-10 flex items-center justify-center w-12 h-12 text-white transition-colors" style="right: 16px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55);" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </button>
   </div>
 
@@ -216,13 +216,14 @@ function renderLightbox() {
   if (p.images.length > 1) {
     p.images.forEach(function(imgSlug, i) {
       const btn = document.createElement('button');
-      btn.style.width = '64px';
-      btn.style.height = '48px';
+      btn.style.width = '96px';
+      btn.style.height = '72px';
       btn.style.overflow = 'hidden';
       btn.style.flexShrink = '0';
-      btn.style.border = '2px solid ' + (i === lb_image ? '#db5648' : 'transparent');
-      btn.style.opacity = i === lb_image ? '1' : '0.5';
-      btn.style.transition = 'opacity 0.15s';
+      btn.style.border = '3px solid ' + (i === lb_image ? '#db5648' : 'rgba(255,255,255,0.15)');
+      btn.style.opacity = i === lb_image ? '1' : '0.65';
+      btn.style.transition = 'opacity 0.15s, border-color 0.15s';
+      btn.style.cursor = 'pointer';
       btn.setAttribute('aria-label', 'Photo ' + (i + 1));
       btn.addEventListener('click', function(e) { e.stopPropagation(); lbSetImage(i); });
       const el = document.createElement('img');
@@ -242,6 +243,10 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeLightbox();
   else if (e.key === 'ArrowLeft') lbPrev();
   else if (e.key === 'ArrowRight') lbNext();
+});
+
+document.getElementById('lb-imgarea').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
 });
 
 document.querySelectorAll('.project-card').forEach(function(card, i) {
