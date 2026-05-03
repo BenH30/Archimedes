@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Custom Architectural Metal Fabrication in Dallas-Fort Worth{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="bg-[#0f172a] text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+    <div class="max-w-3xl">
+      <p class="text-[#b5860d] font-semibold uppercase tracking-widest text-sm mb-4">Dallas-Fort Worth</p>
+      <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-6">
+        Custom Architectural<br>Metal Fabrication
+      </h1>
+      <p class="text-lg lg:text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl">
+        We help general contractors, architects, designers, and commercial owners execute specialty metal scopes with precise fabrication, durable finishes, clear communication, and craftsmanship-driven results.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/quote/" class="bg-[#b5860d] hover:bg-[#d4a520] text-white font-semibold px-8 py-4 rounded transition-colors text-lg">
+          Request a Quote
+        </a>
+        <a href="/projects/" class="border border-slate-500 hover:border-white text-white font-semibold px-8 py-4 rounded transition-colors text-lg">
+          View Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Positioning bar -->
+<section class="bg-[#1e3a5f] text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+    <div class="flex flex-wrap gap-x-10 gap-y-2 justify-center text-sm font-medium text-slate-300">
+      <span>&#10003; Precise Fabrication</span>
+      <span>&#10003; Clear Coordination</span>
+      <span>&#10003; Durable Finishes</span>
+      <span>&#10003; Field Measurement</span>
+      <span>&#10003; Schedule Reliability</span>
+      <span>&#10003; Woman-Owned Business (WBE)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl lg:text-4xl font-bold text-[#0f172a] mb-4">What We Fabricate</h2>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto">Specialty metal scopes for commercial construction, interiors, and design-forward projects across Dallas-Fort Worth.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {% for service in services %}
+      <a href="{{ service.url }}" class="group border border-slate-200 rounded-lg p-6 hover:border-[#b5860d] hover:shadow-md transition-all">
+        <div class="text-3xl mb-3">{{ service.icon }}</div>
+        <h3 class="font-bold text-[#0f172a] text-lg mb-2 group-hover:text-[#b5860d] transition-colors">{{ service.name }}</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">{{ service.description }}</p>
+      </a>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<!-- Why Archimedes -->
+<section class="bg-slate-50 py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-[#b5860d] font-semibold uppercase tracking-widest text-sm mb-3">Why Archimedes</p>
+        <h2 class="text-3xl lg:text-4xl font-bold text-[#0f172a] mb-6">A Specialty Partner, Not Just a Shop</h2>
+        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+          Many fabricators can weld. Fewer can communicate scope, constraints, finish expectations, and schedule risks clearly — and still deliver work that looks sharp, fits correctly, and holds up over time.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex gap-3">
+            <span class="text-[#b5860d] font-bold mt-0.5">&#10003;</span>
+            <div>
+              <strong class="text-[#0f172a]">Craftsmanship + Communication</strong>
+              <p class="text-slate-500 text-sm mt-1">We manage scope, finish expectations, and schedule risks clearly from day one.</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-[#b5860d] font-bold mt-0.5">&#10003;</span>
+            <div>
+              <strong class="text-[#0f172a]">Commercial Construction Ready</strong>
+              <p class="text-slate-500 text-sm mt-1">Field measurement, submittal support, shop drawings, and installation planning.</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-[#b5860d] font-bold mt-0.5">&#10003;</span>
+            <div>
+              <strong class="text-[#0f172a]">Custom Problem-Solving</strong>
+              <p class="text-slate-500 text-sm mt-1">Design-forward work: signage, panels, shelving, fencing, brass features, and custom trim.</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-[#b5860d] font-bold mt-0.5">&#10003;</span>
+            <div>
+              <strong class="text-[#0f172a]">Capacity Partner for Other Trades</strong>
+              <p class="text-slate-500 text-sm mt-1">We support sign shops, millwork firms, and GCs without threatening their customer relationships.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="bg-[#0f172a] rounded-xl p-10 text-white">
+        <p class="text-[#b5860d] font-semibold uppercase tracking-widest text-sm mb-4">Who We Serve</p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex items-center gap-2"><span class="text-[#b5860d]">&rarr;</span> General Contractors &amp; Commercial Construction Teams</li>
+          <li class="flex items-center gap-2"><span class="text-[#b5860d]">&rarr;</span> Architects &amp; Interior Designers</li>
+          <li class="flex items-center gap-2"><span class="text-[#b5860d]">&rarr;</span> Commercial Owners, Developers &amp; Property Managers</li>
+          <li class="flex items-center gap-2"><span class="text-[#b5860d]">&rarr;</span> Sign Companies &amp; Millwork Firms</li>
+          <li class="flex items-center gap-2"><span class="text-[#b5860d]">&rarr;</span> Restaurants, Retail &amp; Hospitality</li>
+        </ul>
+        <div class="border-t border-slate-700 mt-8 pt-8">
+          <a href="/quote/" class="block text-center bg-[#b5860d] hover:bg-[#d4a520] text-white font-semibold px-6 py-3 rounded transition-colors">
+            Start a Project Conversation
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="bg-[#b5860d] text-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-4">Have a Custom Metal Scope?</h2>
+    <p class="text-lg text-amber-100 mb-8 max-w-xl mx-auto">Send us your drawings, sketches, or photos. We'll get back to you quickly with a clear conversation about what's possible.</p>
+    <a href="/quote/" class="bg-white text-[#b5860d] hover:bg-amber-50 font-bold px-10 py-4 rounded transition-colors text-lg inline-block">
+      Request a Quote
+    </a>
+  </div>
+</section>
+
+{% endblock %}

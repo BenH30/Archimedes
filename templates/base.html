@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Archimedes Metals{% endblock %} | Custom Architectural Metal Fabrication Dallas-Fort Worth</title>
+  <meta name="description" content="{% block meta_description %}Archimedes Metals is a Dallas-Fort Worth custom architectural metal fabrication partner for general contractors, architects, designers, and commercial owners.{% endblock %}">
+  <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-white text-slate-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-[#0f172a] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-3">
+          <span class="text-xl font-bold tracking-wide">ARCHIMEDES <span class="text-[#b5860d]">METALS</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="/services/" class="hover:text-[#b5860d] transition-colors">Services</a>
+          <a href="/projects/" class="hover:text-[#b5860d] transition-colors">Projects</a>
+          <a href="/about/" class="hover:text-[#b5860d] transition-colors">About</a>
+          <a href="/quote/" class="bg-[#b5860d] hover:bg-[#d4a520] text-white px-4 py-2 rounded transition-colors">Request a Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="bg-[#0f172a] text-slate-300 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="text-xl font-bold text-white mb-3">ARCHIMEDES <span class="text-[#b5860d]">METALS</span></div>
+          <p class="text-sm leading-relaxed">Custom architectural metal fabrication for commercial construction, interiors, signage, and design-forward metalwork. Dallas-Fort Worth.</p>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-3">Services</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/services/architectural-metalwork/" class="hover:text-[#b5860d] transition-colors">Architectural Metalwork</a></li>
+            <li><a href="/services/metal-wall-panels/" class="hover:text-[#b5860d] transition-colors">Metal Wall Panels</a></li>
+            <li><a href="/services/custom-metal-signage/" class="hover:text-[#b5860d] transition-colors">Custom Metal Signage</a></li>
+            <li><a href="/services/fencing-screens-enclosures/" class="hover:text-[#b5860d] transition-colors">Fencing, Screens & Enclosures</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-3">Contact</h3>
+          <ul class="space-y-2 text-sm">
+            <li>Dallas-Fort Worth, TX</li>
+            <li><a href="/quote/" class="hover:text-[#b5860d] transition-colors">Request a Quote</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 mt-10 pt-6 text-sm text-slate-500">
+        &copy; {% now "Y" %} Archimedes Metals. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
