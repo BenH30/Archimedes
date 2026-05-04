@@ -203,6 +203,9 @@ function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
   lbOpen = false;
   document.body.style.overflow = '';
+  if (window.location.search) {
+    history.replaceState(null, '', window.location.pathname);
+  }
 }
 
 function lbPrev() {
