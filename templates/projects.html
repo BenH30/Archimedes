@@ -120,41 +120,61 @@
 
 
 <!-- ── LIGHTBOX ───────────────────────────────────────────────────────── -->
-<div id="lightbox" class="fixed inset-0 z-50 flex-col bg-[#0a0e14]" style="display:none;" role="dialog" aria-modal="true" aria-label="Project photo viewer">
+<!--
+  Layout uses three fixed rows via inline flex-col on the root:
+    1. Top bar — fixed 52px, X button always accessible
+    2. Image row — flex:1, arrows are FLEX SIBLINGS (not absolute) so they
+       never overflow into row 1 regardless of row 3 height
+    3. Info bar — capped at 155px with overflow-y:auto
+-->
+<div id="lightbox" class="fixed inset-0 z-50" style="display:none; flex-direction:column; background:#0a0e14;" role="dialog" aria-modal="true" aria-label="Project photo viewer">
 
-  <!-- Top bar -->
-  <div class="flex items-center justify-between px-5 py-3 shrink-0 border-b border-white/5">
-    <span id="lb-category" class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.25em]"></span>
-    <div class="flex items-center gap-6">
-      <span id="lb-counter" class="text-slate-500 text-xs font-mono tabular-nums"></span>
-      <button onclick="closeLightbox()" aria-label="Close" class="text-white hover:text-[#db5648] transition-colors px-3 py-2 -mr-2">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  <!-- Row 1: top bar -->
+  <div style="height:52px; flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 20px; border-bottom:1px solid rgba(255,255,255,0.07); position:relative; z-index:1;">
+    <span id="lb-category" style="color:#db5648; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.25em;"></span>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <span id="lb-counter" style="color:#475569; font-size:11px; font-family:monospace;"></span>
+      <button onclick="closeLightbox()" aria-label="Close lightbox"
+        style="background:none; border:none; cursor:pointer; color:#fff; padding:10px; margin:-10px -10px -10px 0; display:flex; align-items:center; justify-content:center;"
+        onmouseover="this.style.color='#db5648'" onmouseout="this.style.color='#fff'">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
 
-  <!-- Image area -->
-  <div id="lb-imgarea" class="flex-1 flex items-center min-h-0 relative">
-    <button onclick="lbPrev()" aria-label="Previous project" class="absolute z-10 flex items-center justify-center w-12 h-12 text-white transition-colors" style="left: 16px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55);" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  <!-- Row 2: ← image → (arrows are flex siblings, never overlap row 1) -->
+  <div style="flex:1; min-height:0; display:flex; align-items:stretch;">
+
+    <button onclick="lbPrev()" aria-label="Previous project"
+      style="width:56px; flex-shrink:0; background:rgba(0,0,0,0.2); border:none; cursor:pointer; color:rgba(255,255,255,0.45); display:flex; align-items:center; justify-content:center; transition:background 0.15s, color 0.15s;"
+      onmouseover="this.style.background='rgba(0,0,0,0.65)'; this.style.color='#fff';"
+      onmouseout="this.style.background='rgba(0,0,0,0.2)'; this.style.color='rgba(255,255,255,0.45)';">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-    <div class="flex-1 flex items-center justify-center p-4 lg:p-10 min-w-0 min-h-0">
-      <img id="lb-img" src="" alt="" class="max-w-full object-contain block" style="max-height: calc(100vh - 210px);">
+
+    <div id="lb-imgarea" style="flex:1; min-width:0; position:relative; overflow:hidden; cursor:zoom-out;" onclick="if(event.target===this)closeLightbox();">
+      <img id="lb-img" src="" alt=""
+        style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-width:calc(100% - 24px); max-height:calc(100% - 24px); object-fit:contain; display:block;">
     </div>
-    <button onclick="lbNext()" aria-label="Next project" class="absolute z-10 flex items-center justify-center w-12 h-12 text-white transition-colors" style="right: 16px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55);" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+
+    <button onclick="lbNext()" aria-label="Next project"
+      style="width:56px; flex-shrink:0; background:rgba(0,0,0,0.2); border:none; cursor:pointer; color:rgba(255,255,255,0.45); display:flex; align-items:center; justify-content:center; transition:background 0.15s, color 0.15s;"
+      onmouseover="this.style.background='rgba(0,0,0,0.65)'; this.style.color='#fff';"
+      onmouseout="this.style.background='rgba(0,0,0,0.2)'; this.style.color='rgba(255,255,255,0.45)';">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 18l6-6-6-6"/></svg>
     </button>
+
   </div>
 
-  <!-- Info + thumbnails -->
-  <div class="shrink-0 bg-[#08111f] border-t border-white/5 px-5 lg:px-10 py-5">
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start gap-5">
-      <div class="flex-1 min-w-0">
-        <h3 id="lb-name" class="font-display font-bold text-white text-lg lg:text-xl uppercase tracking-tight"></h3>
-        <p id="lb-location" class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.2em] mt-1"></p>
-        <p id="lb-desc" class="text-slate-400 text-sm leading-relaxed mt-2 max-w-2xl hidden lg:block"></p>
+  <!-- Row 3: info + thumbnails (capped height prevents pushing row 2 too small) -->
+  <div style="flex-shrink:0; background:#08111f; border-top:1px solid rgba(255,255,255,0.05); padding:14px 20px; max-height:155px; overflow-y:auto;">
+    <div style="max-width:1280px; margin:0 auto; display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap;">
+      <div style="flex:1; min-width:180px;">
+        <h3 id="lb-name" class="font-display" style="font-weight:700; color:#fff; font-size:18px; text-transform:uppercase; letter-spacing:-0.02em; margin:0 0 3px;"></h3>
+        <p id="lb-location" style="color:#db5648; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.2em; margin:0 0 6px;"></p>
+        <p id="lb-desc" style="color:#94a3b8; font-size:13px; line-height:1.5; margin:0;"></p>
       </div>
-      <div id="lb-thumbs" class="flex gap-2 shrink-0 flex-wrap"></div>
+      <div id="lb-thumbs" style="display:flex; gap:8px; flex-shrink:0; flex-wrap:wrap; align-items:flex-start;"></div>
     </div>
   </div>
 
@@ -168,14 +188,16 @@ let lbOpen = false;
 let lb_project = 0;
 let lb_image = 0;
 
-function openLightbox(idx) {
-  lb_project = idx;
-  lb_image = 0;
+function openLightboxAt(projectIdx, imageIdx) {
+  lb_project = projectIdx;
+  lb_image = imageIdx || 0;
   renderLightbox();
   document.getElementById('lightbox').style.display = 'flex';
   lbOpen = true;
   document.body.style.overflow = 'hidden';
 }
+
+function openLightbox(idx) { openLightboxAt(idx, 0); }
 
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
@@ -221,7 +243,7 @@ function renderLightbox() {
       btn.style.overflow = 'hidden';
       btn.style.flexShrink = '0';
       btn.style.border = '3px solid ' + (i === lb_image ? '#db5648' : 'rgba(255,255,255,0.15)');
-      btn.style.opacity = i === lb_image ? '1' : '0.65';
+      btn.style.opacity = i === lb_image ? '1' : '0.6';
       btn.style.transition = 'opacity 0.15s, border-color 0.15s';
       btn.style.cursor = 'pointer';
       btn.setAttribute('aria-label', 'Photo ' + (i + 1));
@@ -232,6 +254,7 @@ function renderLightbox() {
       el.style.width = '100%';
       el.style.height = '100%';
       el.style.objectFit = 'cover';
+      el.style.display = 'block';
       btn.appendChild(el);
       thumbs.appendChild(btn);
     });
@@ -245,9 +268,18 @@ document.addEventListener('keydown', function(e) {
   else if (e.key === 'ArrowRight') lbNext();
 });
 
-document.getElementById('lb-imgarea').addEventListener('click', function(e) {
-  if (e.target === this) closeLightbox();
-});
+// Auto-open when arriving from a service page with ?project=IMAGE_SLUG
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var target = params.get('project');
+  if (!target) return;
+  var idx = -1, imgIdx = 0;
+  for (var i = 0; i < PROJECTS.length; i++) {
+    var j = PROJECTS[i].images.indexOf(target);
+    if (j !== -1) { idx = i; imgIdx = j; break; }
+  }
+  if (idx !== -1) openLightboxAt(idx, imgIdx);
+})();
 
 document.querySelectorAll('.project-card').forEach(function(card, i) {
   card.addEventListener('click', function() { openLightbox(i); });

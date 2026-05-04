@@ -82,7 +82,7 @@
 
     <div class="grid grid-cols-2 gap-3">
       {% for img in service.featured_images %}
-      <a href="/projects/" class="group block aspect-video overflow-hidden bg-slate-200 relative">
+      <a href="/projects/?project={{ img }}" class="group block aspect-video overflow-hidden bg-slate-200 relative">
         <img src="{% static 'images/projects/' %}{{ img }}.jpg"
              alt="{{ service.name }} — project photo"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
