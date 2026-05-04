@@ -195,6 +195,7 @@ function openLightboxAt(projectIdx, imageIdx) {
   document.getElementById('lightbox').style.display = 'flex';
   lbOpen = true;
   document.body.style.overflow = 'hidden';
+  history.replaceState(null, '', window.location.pathname + '?project=' + PROJECTS[projectIdx].images[0]);
 }
 
 function openLightbox(idx) { openLightboxAt(idx, 0); }
