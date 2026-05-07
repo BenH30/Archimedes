@@ -6,7 +6,11 @@
 {% block content %}
 
 <!-- ── HERO ─────────────────────────────────────────────────────────── -->
-<section class="relative bg-[#08111f] text-white overflow-hidden flex flex-col lg:flex-row">
+<!--
+  CSS grid: left cell's content determines row height; right cell
+  stretches to match automatically — no flex height ambiguity.
+-->
+<section class="relative bg-[#08111f] text-white overflow-hidden lg:grid lg:grid-cols-[42%_58%]">
 
   <!-- Diagonal stripe texture -->
   <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
@@ -14,16 +18,14 @@
   <!-- Left brass accent line -->
   <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
 
-  <!-- Left column: text — its natural height drives the whole section -->
-  <div class="relative flex flex-col w-full lg:w-[42%] px-6 lg:pl-12 lg:pr-10 py-16 lg:py-14 justify-center">
+  <!-- Left cell: content sets the row height -->
+  <div class="relative flex flex-col px-6 lg:pl-12 lg:pr-10 py-16 lg:py-14">
 
-    <!-- Location tag -->
     <div class="flex items-center gap-3 mb-8">
       <div class="w-8 h-px bg-[#db5648]"></div>
       <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Dallas–Fort Worth, Texas</span>
     </div>
 
-    <!-- Headline -->
     <h1 class="font-display font-black uppercase leading-[0.88] tracking-[-0.01em]">
       <span class="block text-[14vw] lg:text-5xl">Custom</span>
       <span class="block text-[14vw] lg:text-5xl text-[#db5648]">Architectural</span>
@@ -31,63 +33,57 @@
       <span class="block text-[14vw] lg:text-5xl text-white/50">Fabrication</span>
     </h1>
 
-    <!-- Descriptor + CTAs -->
     <div class="mt-10 pt-8 border-t border-white/10">
       <p class="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
         Specialty metal scopes for commercial construction, interiors, signage, and design-forward projects across DFW.
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href="/quote/" class="bg-[#db5648] hover:bg-[#c7313f] text-white text-xs font-semibold px-7 py-3.5 uppercase tracking-[0.2em] transition-colors">
-          Request a Quote
-        </a>
-        <a href="/projects/" class="border border-white/20 hover:border-white/50 text-white text-xs font-semibold px-7 py-3.5 uppercase tracking-[0.2em] transition-colors">
-          View Projects
-        </a>
+        <a href="/quote/" class="bg-[#db5648] hover:bg-[#c7313f] text-white text-xs font-semibold px-7 py-3.5 uppercase tracking-[0.2em] transition-colors">Request a Quote</a>
+        <a href="/projects/" class="border border-white/20 hover:border-white/50 text-white text-xs font-semibold px-7 py-3.5 uppercase tracking-[0.2em] transition-colors">View Projects</a>
       </div>
     </div>
 
   </div>
 
-  <!-- Right column: 4-photo project mosaic (desktop only) -->
-  <!-- Two flex rows, each with two cells — stretches to match the left column height -->
-  <div class="hidden lg:flex lg:w-[58%] flex-col gap-[3px]">
+  <!-- Right cell: 2×2 photo mosaic — grid gives it the exact same height as left cell -->
+  <div class="hidden lg:flex flex-col gap-[3px] overflow-hidden">
 
-    <div class="flex-1 flex gap-[3px] min-h-0">
-      <div class="flex-1 relative overflow-hidden group">
+    <div class="flex-1 flex gap-[3px]">
+      <a href="/services/architectural-metalwork/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/outdoor-canopy.jpg' %}" alt="Perforated aluminum canopy"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
           <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Panel Systems</span>
         </div>
-      </div>
-      <div class="flex-1 relative overflow-hidden group">
+      </a>
+      <a href="/services/shelving-trim-brass/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/brass-chandelier.jpg' %}" alt="Brushed brass chandelier"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
           <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Brass Features</span>
         </div>
-      </div>
+      </a>
     </div>
 
-    <div class="flex-1 flex gap-[3px] min-h-0">
-      <div class="flex-1 relative overflow-hidden group">
+    <div class="flex-1 flex gap-[3px]">
+      <a href="/services/custom-metal-signage/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/signage-eagle-02.jpg' %}" alt="Custom metal signage"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
           <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Custom Signage</span>
         </div>
-      </div>
-      <div class="flex-1 relative overflow-hidden group">
+      </a>
+      <a href="/services/shelving-trim-brass/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/shelving-01.jpg' %}" alt="Floating metal shelving"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
           <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Floating Shelving</span>
         </div>
-      </div>
+      </a>
     </div>
 
   </div>
