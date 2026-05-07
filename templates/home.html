@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- ── HERO ─────────────────────────────────────────────────────────── -->
-<section class="relative bg-[#08111f] text-white overflow-hidden flex flex-col">
+<section class="relative bg-[#08111f] text-white overflow-hidden flex flex-col lg:flex-row" style="min-height: clamp(480px, 88vh, 900px);">
 
   <!-- Diagonal stripe texture -->
   <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
@@ -14,7 +14,8 @@
   <!-- Left brass accent line -->
   <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
 
-  <div class="relative flex-1 flex flex-col max-w-7xl mx-auto px-6 lg:px-12 w-full py-16">
+  <!-- Left column: text -->
+  <div class="relative flex flex-col w-full lg:w-[56%] px-6 lg:pl-12 lg:pr-10 py-16 lg:py-20 justify-center">
 
     <!-- Location tag -->
     <div class="flex items-center gap-3">
@@ -24,10 +25,10 @@
 
     <!-- Headline -->
     <h1 class="font-display font-black uppercase leading-[0.88] tracking-[-0.01em] mt-8">
-      <span class="block text-[14vw] lg:text-[10.5vw]">Custom</span>
-      <span class="block text-[14vw] lg:text-[10.5vw] text-[#db5648]">Architectural</span>
-      <span class="block text-[14vw] lg:text-[10.5vw]">Metal</span>
-      <span class="block text-[14vw] lg:text-[10.5vw] text-white/50">Fabrication</span>
+      <span class="block text-[14vw] lg:text-[6.5vw]">Custom</span>
+      <span class="block text-[14vw] lg:text-[6.5vw] text-[#db5648]">Architectural</span>
+      <span class="block text-[14vw] lg:text-[6.5vw]">Metal</span>
+      <span class="block text-[14vw] lg:text-[6.5vw] text-white/50">Fabrication</span>
     </h1>
 
     <!-- Descriptor + CTAs -->
@@ -47,6 +48,17 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Right column: hero image (desktop only) -->
+  <div class="hidden lg:block lg:w-[44%] relative overflow-hidden">
+    <img src="{% static 'images/projects/outdoor-canopy.jpg' %}"
+         alt="Perforated aluminum canopy — custom architectural metalwork by Archimedes Metals"
+         class="absolute inset-0 w-full h-full object-cover">
+    <!-- Left fade blends seamlessly with dark text column -->
+    <div class="absolute inset-0" style="background: linear-gradient(to right, #08111f 0%, rgba(8,17,31,0.15) 50%, transparent 100%);"></div>
+    <!-- Bottom fade ties into marquee below -->
+    <div class="absolute bottom-0 left-0 right-0 h-24" style="background: linear-gradient(to top, #08111f, transparent);"></div>
   </div>
 
 </section>
