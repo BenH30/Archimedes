@@ -29,17 +29,17 @@ uv run python manage.py migrate          # apply database migrations
 uv run python manage.py makemigrations   # generate migrations after model changes
 uv run python manage.py createsuperuser  # create admin user
 uv run python manage.py test             # run tests
-tailwindcss -i static/css/input.css -o static/css/output.css --minify  # recompile CSS
+tailwindcss -i src/input.css -o static/css/output.css --minify  # recompile CSS
 ```
 
-Always recompile CSS after editing `static/css/input.css` or adding new Tailwind classes that weren't previously used.
+Always recompile CSS after editing `src/input.css` or adding new Tailwind classes that weren't previously used.
 
 ## Architecture
 
 - `archimedes/` — Django project config (settings, root URLs, wsgi/asgi)
 - `core/` — main Django app; all current views, URLs, and static content data
 - `templates/` — global templates directory (base.html + all page templates)
-- `static/css/input.css` — Tailwind source; `output.css` is the compiled artifact
+- `src/input.css` — Tailwind source (not served); `static/css/output.css` is the compiled artifact
 - New Django apps: `uv run python manage.py startapp <name>`
 
 ### Template & CSS Patterns
