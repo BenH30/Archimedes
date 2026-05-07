@@ -4,12 +4,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Archimedes Metals{% endblock %} | Custom Architectural Metal Fabrication Dallas-Fort Worth</title>
+
+  <title>{% block title %}Archimedes Metals | Custom Architectural Metal Fabrication Dallas-Fort Worth{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Archimedes Metals is a Dallas-Fort Worth custom architectural metal fabrication partner for general contractors, architects, designers, and commercial owners.{% endblock %}">
+  <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ SITE_URL }}{{ request.path }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{% static 'images/logo-white.png' %}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:site_name" content="Archimedes Metals">
+  <meta property="og:url" content="{{ SITE_URL }}{{ request.path }}">
+  <meta property="og:title" content="{% block og_title %}Archimedes Metals | Custom Architectural Metal Fabrication Dallas-Fort Worth{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Archimedes Metals is a Dallas-Fort Worth custom architectural metal fabrication partner for general contractors, architects, designers, and commercial owners.{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{{ SITE_URL }}/static/images/logo-white.png{% endblock %}">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/output.css' %}">
+
+  <!-- LocalBusiness Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Archimedes Metals",
+    "url": "https://archimedesmetals.com",
+    "logo": "https://archimedesmetals.com/static/images/logo-white.png",
+    "image": "https://archimedesmetals.com/static/images/logo-white.png",
+    "description": "Custom architectural metal fabrication for commercial construction, interiors, signage, and design-forward metalwork. Dallas–Fort Worth.",
+    "email": "info@archimedesmetals.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2555 Nail Road",
+      "addressLocality": "Krum",
+      "addressRegion": "TX",
+      "postalCode": "76249",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Dallas-Fort Worth Metroplex"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Architectural Metal Fabrication Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Architectural Metalwork"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Metal Wall Panels"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Metal Signage"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fencing, Screens & Enclosures"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shelving, Trim & Brass Features"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Press Brake & Forming"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Welding"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coatings & Finishes"}}
+      ]
+    }
+  }
+  </script>
+
+  {% block structured_data %}{% endblock %}
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased">
 

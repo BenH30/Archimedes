@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Metal Fabrication Services | Archimedes Metals — Dallas-Fort Worth{% endblock %}
+{% block meta_description %}Custom architectural metal fabrication services for commercial construction, interiors, signage, and design-forward projects across Dallas–Fort Worth. Panels, fencing, signage, brass features, and more.{% endblock %}
+{% block og_title %}Architectural Metal Fabrication Services | Archimedes Metals — Dallas-Fort Worth{% endblock %}
+
+{% block content %}
+
+<!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-px bg-[#db5648]"></div>
+      <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Dallas–Fort Worth, Texas</span>
+    </div>
+    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
+      Our<br><span class="text-[#db5648]">Services</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-xl leading-relaxed">
+      Eight specialty services — all fabricated in-house, all custom. From large-scale panel systems to high-finish brass details.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── SERVICE CARDS ──────────────────────────────────────────────────── -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for service in services %}
+      <a href="{{ service.url }}" class="group flex flex-col overflow-hidden border border-slate-100 hover:border-[#db5648]/40 transition-colors">
+
+        <!-- Photo -->
+        <div class="aspect-video overflow-hidden bg-slate-100 relative">
+          <img src="{% static 'images/projects/' %}{{ service.hero_image }}.jpg"
+               alt="{{ service.name }}"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute top-3 left-3 bg-[#08111f]/80 text-white font-display font-black text-xs px-2 py-1 uppercase tracking-wider">
+            {{ forloop.counter|stringformat:"02d" }}
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="flex flex-col flex-1 p-6 bg-white">
+          <h2 class="font-display font-bold text-[#08111f] text-xl uppercase tracking-tight mb-2 group-hover:text-[#db5648] transition-colors">
+            {{ service.name }}
+          </h2>
+          <p class="text-slate-500 text-sm leading-relaxed flex-1">{{ service.description }}</p>
+          <div class="mt-5 flex items-center gap-2 text-[#db5648] text-xs font-semibold uppercase tracking-[0.2em]">
+            Learn More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+      </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── CTA ────────────────────────────────────────────────────────────── -->
+<section class="bg-[#08111f] py-24 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-[0.035]" style="background-image: repeating-linear-gradient(135deg, white 0px, white 1px, transparent 1px, transparent 48px);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-px bg-[#db5648]"></div>
+        <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Start a Project</span>
+      </div>
+      <h2 class="font-display font-black text-white text-4xl lg:text-6xl uppercase leading-none tracking-tight">
+        Have a Scope<br>We Can Help With?
+      </h2>
+      <p class="text-slate-400 mt-6 text-base leading-relaxed max-w-lg">
+        Send us your drawings, sketches, or photos. We'll respond quickly with a clear conversation about what's possible, what it takes, and how we can help.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4 shrink-0">
+      <a href="/quote/" class="bg-[#db5648] hover:bg-[#c7313f] text-white text-xs font-semibold px-10 py-5 uppercase tracking-[0.25em] transition-colors text-center whitespace-nowrap">
+        Request a Quote &rarr;
+      </a>
+      <a href="/projects/" class="border border-white/20 hover:border-white/50 text-white text-xs font-semibold px-10 py-5 uppercase tracking-[0.25em] transition-colors text-center whitespace-nowrap">
+        View Project Showcase
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

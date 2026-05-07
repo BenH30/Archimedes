@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 
 SERVICES = [
@@ -269,6 +269,20 @@ SERVICES_DETAIL = {
             "Custom perforation patterns and panel systems",
         ],
         "featured_images": ["outdoor-canopy", "partition-01", "framing-01", "surface-cover-04"],
+        "faqs": [
+            {
+                "question": "What types of architectural metalwork does Archimedes Metals fabricate?",
+                "answer": "We fabricate custom metal features for commercial interiors and exteriors, including decorative partition and panel wall systems, outdoor canopy structures, lobby and reception metalwork, fireplace surrounds, elevator lobby panels, and architectural trim. We work in aluminum, stainless steel, mild steel, and brass — and handle field measurement, shop drawings, finish samples, and installation coordination as part of the full scope.",
+            },
+            {
+                "question": "Do you provide shop drawings and submittal packages for commercial metalwork?",
+                "answer": "Yes. Shop drawings, finish samples, and submittal packages are a standard part of our workflow for commercial architectural metalwork. These documents support the architect's and general contractor's coordination process, reduce field surprises, and give the project team the documentation needed for approval and installation.",
+            },
+            {
+                "question": "Can you handle field measurement and installation coordination for architectural metal scopes?",
+                "answer": "Yes. We offer field measurement, installation planning, and installation coordination. For large-scale or precision-fit scopes — canopy systems, panel walls, lobby features — measuring in the field before fabrication ensures the finished pieces fit the as-built conditions and reduces costly modifications.",
+            },
+        ],
     },
     "metal-wall-panels": {
         "name": "Metal Wall Panels",
@@ -286,6 +300,20 @@ SERVICES_DETAIL = {
             "Button-mount and hidden-fastener installation systems",
         ],
         "featured_images": ["surface-cover-03", "partition-02", "surface-cover-01-02", "surface-cover-04"],
+        "faqs": [
+            {
+                "question": "What materials are available for architectural metal wall panels?",
+                "answer": "We most commonly fabricate metal wall panels in aluminum at ⅛″ or ¼″ thickness depending on the span and application. We also work in stainless steel and mild steel. Aluminum offers the best combination of weight, workability, and finish options for most interior and exterior panel applications.",
+            },
+            {
+                "question": "Can you create custom perforation patterns for metal wall panels?",
+                "answer": "Yes. We produce custom perforation patterns including geometric repeating patterns — squares, ellipses, triangles — open-field perforations, and company-specific logo cutouts. Panel perforation is engineered to balance the visual design intent with the structural requirements of the panel span.",
+            },
+            {
+                "question": "Are metal wall panels suitable for both interior and exterior applications?",
+                "answer": "Yes. We fabricate panel systems for interior environments — elevator lobbies, retail spaces, commercial kitchens, office reception areas — and exterior applications including building cladding and outdoor canopy faces. Material selection, panel thickness, fastener systems, and finish coatings are specified based on the exposure environment.",
+            },
+        ],
     },
     "custom-metal-signage": {
         "name": "Custom Metal Signage",
@@ -303,6 +331,20 @@ SERVICES_DETAIL = {
             "Interior wall-mounted and suspended signs",
         ],
         "featured_images": ["signage-eagle-02", "signage-wildflower", "signage-wayfinding", "signage-eagle-03"],
+        "faqs": [
+            {
+                "question": "What types of custom metal signage does Archimedes Metals fabricate?",
+                "answer": "We fabricate building and suite identification signs, community and property entry monuments, dimensional logo features, wayfinding and directional sign programs, and interior wall-mounted or suspended metal signs. Our signage work spans commercial office buildings, retail spaces, residential communities, and hospitality properties across Dallas-Fort Worth.",
+            },
+            {
+                "question": "Can you integrate lighting into custom metal signs?",
+                "answer": "Yes. We fabricate backlit metal panels, halo-lit lettering with cut-through characters, and signs with integrated LED systems. Lighting is engineered as part of the sign assembly — not added as an afterthought — so the mounting, wiring, and visual effect are all coordinated from the start.",
+            },
+            {
+                "question": "Do you work with sign companies as a metal fabrication subcontractor?",
+                "answer": "Yes. We regularly partner with sign companies that need specialty metal components — dimensional letters, backlit panels, monument sign frames — without adding in-house fabrication capacity. We work as a subcontractor, protecting your customer relationship while delivering the metal capability your project requires.",
+            },
+        ],
     },
     "fencing-screens-enclosures": {
         "name": "Fencing, Screens & Enclosures",
@@ -320,6 +362,20 @@ SERVICES_DETAIL = {
             "Powder coat finishes in custom colors",
         ],
         "featured_images": ["fence-louvered-01", "fence-louvered-02"],
+        "faqs": [
+            {
+                "question": "What types of commercial metal fencing and enclosures does Archimedes Metals fabricate?",
+                "answer": "We fabricate post-and-panel fencing systems with louvered or flat panels, HVAC and mechanical equipment screening enclosures, dumpster and service area enclosures, and residential and commercial privacy screens. Systems are powder coated in custom colors and include gate options for access control.",
+            },
+            {
+                "question": "Can you accommodate sloped or graded sites for metal fencing installations?",
+                "answer": "Yes. Grade changes are a routine part of our fencing scopes. We field-measure every post location, anchor and level each post individually, and panel to the slope rather than stepping the fence line where the design requires a continuous appearance. We've installed continuous fencing runs over 275 feet with significant grade changes across the length.",
+            },
+            {
+                "question": "What gate options are available with your enclosure and fencing systems?",
+                "answer": "We fabricate custom gate panels to match the enclosure system — saloon-style swing gates for service access, single and double swing gates for pedestrian and equipment entry, and push gates with controlled access. Gate hardware is specified for the load and use frequency of each installation.",
+            },
+        ],
     },
     "shelving-trim-brass": {
         "name": "Shelving, Trim & Brass Features",
@@ -337,6 +393,20 @@ SERVICES_DETAIL = {
             "ADA-compliant railing and handrail systems",
         ],
         "featured_images": ["brass-chandelier", "shelving-01", "trim-01", "brass-handrails"],
+        "faqs": [
+            {
+                "question": "How do Archimedes Metals' floating metal shelves achieve the no-bracket appearance?",
+                "answer": "Our floating shelves use concealed mounting systems — internal frames or hidden mounting tabs that anchor inside the wall and carry the shelf load invisibly. The visible shelf profile is an aluminum or steel sheath over the structural frame, with no exposed hardware. The result is a shelf that appears to float off the wall with no visible means of support.",
+            },
+            {
+                "question": "What brass fabrication work does Archimedes Metals offer?",
+                "answer": "We fabricate custom brass features for commercial interiors, including statement chandeliers, handrails and stair rails, ADA-compliant railing systems, and decorative architectural detail work. Our brass work is fabricated to a brushed or polished finish and engineered for both structural performance and visual quality.",
+            },
+            {
+                "question": "Can you fabricate architectural trim to match existing materials or transitions?",
+                "answer": "Yes. We regularly fabricate custom trim profiles to create clean transitions between dissimilar materials — tile and glass, stone and drywall, wood and metal. For finish matching, we provide physical samples prior to fabrication so the installed piece meets the design intent. Anodized tones, powder coat colors, and mechanical finishes can all be specified to a design standard.",
+            },
+        ],
     },
     "press-brake-forming": {
         "name": "Press Brake & Forming",
@@ -354,6 +424,20 @@ SERVICES_DETAIL = {
             "CAD modeling prior to forming for fit verification",
         ],
         "featured_images": ["trim-03", "framing-01", "outdoor-canopy", "partition-02"],
+        "faqs": [
+            {
+                "question": "What is Archimedes Metals' press brake capacity?",
+                "answer": "Our in-house press brake is a 12-foot, 140-ton CNC machine. This allows us to form large architectural components — trim profiles, panel returns, structural frames, and enclosure parts — with consistent profiles and tight tolerances, without outsourcing to a secondary shop. In-house forming gives us direct control over quality, lead time, and cost.",
+            },
+            {
+                "question": "What materials can your press brake form?",
+                "answer": "Our press brake handles aluminum, mild steel, and stainless steel. We work regularly with architectural gauges from 22-gauge sheet to ½″ plate depending on the material and application, forming custom extrusion profiles, panel returns, trim channels, and structural components.",
+            },
+            {
+                "question": "Do you perform CAD modeling before press brake forming?",
+                "answer": "Yes. For complex profiles, custom extrusions, or precision-fit architectural components, we model the part in CAD before forming. This step lets us verify the final geometry, confirm the bend sequence, and identify fit issues before material is cut — reducing waste and ensuring the finished piece meets the specified dimensions.",
+            },
+        ],
     },
     "welding": {
         "name": "Welding",
@@ -371,6 +455,20 @@ SERVICES_DETAIL = {
             "Structural welding for commercial construction",
         ],
         "featured_images": ["brass-chandelier", "fence-louvered-01", "shelving-02", "partition-01"],
+        "faqs": [
+            {
+                "question": "What types of welding does Archimedes Metals offer?",
+                "answer": "We offer aluminum TIG welding, stainless steel TIG and MIG welding, mild steel MIG and TIG welding, and brass welding and brazing. Our team is experienced in both structural welding for load-bearing commercial construction scopes and decorative welding for visible architectural metalwork where weld appearance is part of the finished product.",
+            },
+            {
+                "question": "Is aluminum TIG welding a specialty at Archimedes Metals?",
+                "answer": "Yes. Aluminum TIG welding is our shop's core specialty. We weld aluminum for structural and decorative architectural applications — canopy frames, partition systems, shelving, signage, and trim — with full-penetration welds, appropriate filler selection, and ground-and-polished surfaces where the weld will be visible in the finished installation.",
+            },
+            {
+                "question": "How do you finish welds on architectural metalwork where the weld is visible?",
+                "answer": "For visible architectural metalwork, we grind, blend, and polish welds to the degree required by the finished surface specification. On anodized aluminum, welds are blended flush before anodizing so the surface has no visible weld line. On powder-coated work, we prep the weld surface to remove porosity and undercut before finish is applied.",
+            },
+        ],
     },
     "coatings-finishes": {
         "name": "Coatings & Finishes",
@@ -388,6 +486,20 @@ SERVICES_DETAIL = {
             "Finish samples and submittal support",
         ],
         "featured_images": ["trim-02", "shelving-01", "signage-eagle-02", "partition-02"],
+        "faqs": [
+            {
+                "question": "What finish options does Archimedes Metals offer for fabricated metalwork?",
+                "answer": "We offer powder coating in custom RAL colors and color-match, brushed and hand-polished mechanical finishes in multiple grit levels, anodizing in clear, satin black, champagne brass, and custom tones, and painted aluminum panel systems. Finish selection is specified based on the environment, design intent, and durability requirements of each project.",
+            },
+            {
+                "question": "Can you match a specific powder coat color or architectural finish standard?",
+                "answer": "Yes. We work from RAL numbers, color-match chips, and architect-specified samples to achieve the correct powder coat color for each project. For mechanical finishes, we produce samples at the specified grit and direction for approval before fabrication. Matching an existing installed finish is also possible with physical reference samples.",
+            },
+            {
+                "question": "Do you provide finish samples and approval submittals before fabrication?",
+                "answer": "Yes. Finish samples and approval submittals are a standard part of our project package for commercial work. Samples are produced at the specified material and finish, submitted for approval by the architect or owner, and documented before fabrication begins — preventing costly finish disputes at the end of a project.",
+            },
+        ],
     },
 }
 
@@ -439,8 +551,22 @@ def projects(request):
     })
 
 
+def services_index(request):
+    return render(request, "services.html", {"services": SERVICES})
+
+
 def service_detail(request, slug):
     service = SERVICES_DETAIL.get(slug)
     if not service:
         raise Http404
-    return render(request, "service_detail.html", {"service": service})
+    return render(request, "service_detail.html", {"service": service, "slug": slug})
+
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "",
+        "Sitemap: https://archimedesmetals.com/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

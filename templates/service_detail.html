@@ -1,8 +1,58 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ service.name }}{% endblock %}
+{% block title %}{{ service.name }} — Archimedes Metals{% endblock %}
 {% block meta_description %}{{ service.tagline }} — Archimedes Metals, custom architectural metal fabrication in Dallas-Fort Worth.{% endblock %}
+{% block og_title %}{{ service.name }} — Archimedes Metals | DFW Metal Fabrication{% endblock %}
+{% block og_description %}{{ service.tagline }} — Archimedes Metals, custom architectural metal fabrication in Dallas-Fort Worth.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ SITE_URL }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "{{ SITE_URL }}/services/"},
+    {"@type": "ListItem", "position": 3, "name": "{{ service.name }}", "item": "{{ SITE_URL }}/services/{{ slug }}/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ service.name }}",
+  "description": "{{ service.description.0 }}",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Archimedes Metals",
+    "url": "https://archimedesmetals.com"
+  },
+  "areaServed": {"@type": "AdministrativeArea", "name": "Dallas-Fort Worth Metroplex"}
+}
+</script>
+{% if service.faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in service.faqs %}
+    {
+      "@type": "Question",
+      "name": "{{ faq.question }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ faq.answer }}"
+      }
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
 
 {% block content %}
 
@@ -90,6 +140,27 @@
       {% endfor %}
     </div>
 
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ── FAQs ────────────────────────────────────────────────────────────── -->
+{% if service.faqs %}
+<section class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center gap-4 mb-12">
+      <div class="w-8 h-px bg-[#db5648]"></div>
+      <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Common Questions</span>
+    </div>
+    <div class="space-y-10">
+      {% for faq in service.faqs %}
+      <div class="border-b border-slate-100 pb-10 last:border-0 last:pb-0">
+        <h3 class="font-display font-bold text-xl lg:text-2xl uppercase text-[#08111f] mb-3 leading-tight">{{ faq.question }}</h3>
+        <p class="text-slate-600 leading-relaxed">{{ faq.answer }}</p>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endif %}
