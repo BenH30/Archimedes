@@ -1,1 +1,1 @@
-web: gunicorn archimedes.wsgi --log-file -
+web: gunicorn archimedes.wsgi --bind 0.0.0.0:$PORT --log-file -
