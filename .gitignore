@@ -206,6 +206,9 @@ tempCodeRunnerFile.py
 # Ruff stuff:
 .ruff_cache/
 
+# Windows alternate data streams (WSL)
+*:Zone.Identifier
+
 # PyPI configuration file
 .pypirc
 

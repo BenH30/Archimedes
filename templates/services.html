@@ -36,9 +36,11 @@
 
         <!-- Photo -->
         <div class="aspect-video overflow-hidden bg-slate-100 relative">
-          <img src="{% static 'images/projects/' %}{{ service.hero_image }}.jpg"
+          {% with img_src="images/"|add:service.hero_image|add:".jpg" %}
+          <img src="{% static img_src %}"
                alt="{{ service.name }}"
                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          {% endwith %}
           <div class="absolute top-3 left-3 bg-[#08111f]/80 text-white font-display font-black text-xs px-2 py-1 uppercase tracking-wider">
             {{ forloop.counter|stringformat:"02d" }}
           </div>
