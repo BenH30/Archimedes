@@ -13,8 +13,8 @@ SERVICES = [
     {"name": "Fabrication & Site Services", "slug": "fabrication-site-services", "hero_image": "outdoor-canopy", "description": "Complete in-house fabrication and commercial installation for architectural metal scopes of all sizes.", "url": "/services/fabrication-site-services/"},
     {"name": "CNC Routing", "slug": "cnc-routing", "hero_image": "partition-02", "description": "Precision CNC cutting for custom perforation patterns, dimensional lettering, logo cutouts, and architectural panel components.", "url": "/services/cnc-routing/"},
     {"name": "Press Brake", "slug": "press-brake", "hero_image": "trim-03", "description": "Precision sheet metal bending and forming for custom trim profiles, panel returns, and complex architectural components.", "url": "/services/press-brake/"},
-    {"name": "Welding", "slug": "welding", "hero_image": "partition-01", "description": "Aluminum TIG, stainless steel, mild steel, and brass welding for structural and architectural metal scopes.", "url": "/services/welding/"},
-    {"name": "Coatings & Finishes", "slug": "coatings-finishes", "hero_image": "trim-02", "description": "Powder coating, brushed finishes, anodizing, and painted panel systems for commercial architectural metalwork.", "url": "/services/coatings-finishes/"},
+    {"name": "Welding", "slug": "welding", "hero_image": "weld-02", "description": "Aluminum TIG, stainless steel, mild steel, and brass welding for structural and architectural metal scopes.", "url": "/services/welding/"},
+    {"name": "Coatings & Finishes", "slug": "coatings-finishes", "hero_image": "coat-02", "description": "Powder coating, brushed finishes, anodizing, and painted panel systems for commercial architectural metalwork.", "url": "/services/coatings-finishes/"},
 ]
 
 AUDIENCES = [
@@ -395,7 +395,7 @@ SERVICES_DETAIL = {
             "Weld grinding and finish blending for architectural applications",
             "Structural welding for commercial construction",
         ],
-        "featured_images": ["brass-chandelier", "fence-louvered-01", "shelving-02", "partition-01"],
+        "featured_images": ["weld-02", "brass-chandelier", "fence-louvered-01", "partition-01"],
         "faqs": [
             {
                 "question": "What types of welding does Archimedes Metals offer?",
@@ -426,7 +426,7 @@ SERVICES_DETAIL = {
             "Field touch-up and finish coordination",
             "Finish samples and submittal support",
         ],
-        "featured_images": ["trim-02", "shelving-01", "signage-eagle-02", "partition-02"],
+        "featured_images": ["coat-02", "trim-02", "shelving-01", "partition-02"],
         "faqs": [
             {
                 "question": "What finish options does Archimedes Metals offer for fabricated metalwork?",

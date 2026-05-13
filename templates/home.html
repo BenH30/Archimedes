@@ -3,8 +3,6 @@
 
 {% block title %}Archimedes Metals | Custom Architectural Metal Fabrication in Dallas-Fort Worth{% endblock %}
 
-{% block nav_logo_class %}h-12{% endblock %}
-
 {% block content %}
 
 <!-- ── HERO ─────────────────────────────────────────────────────────── -->
@@ -51,7 +49,7 @@
   <div class="hidden lg:flex flex-col gap-[3px] overflow-hidden">
 
     <div class="flex-1 flex gap-[3px]">
-      <a href="/services/architectural-metalwork/" class="flex-1 relative overflow-hidden group block">
+      <a href="/services/fabrication-site-services/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/outdoor-canopy.jpg' %}" alt="Perforated aluminum canopy"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
@@ -59,31 +57,31 @@
           <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Panel Systems</span>
         </div>
       </a>
-      <a href="/services/shelving-trim-brass/" class="flex-1 relative overflow-hidden group block">
+      <a href="/services/welding/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/brass-chandelier.jpg' %}" alt="Brushed brass chandelier"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
-          <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Brass Features</span>
+          <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Welding</span>
         </div>
       </a>
     </div>
 
     <div class="flex-1 flex gap-[3px]">
-      <a href="/services/custom-metal-signage/" class="flex-1 relative overflow-hidden group block">
+      <a href="/services/cnc-routing/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/signage-eagle-02.jpg' %}" alt="Custom metal signage"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
-          <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Custom Signage</span>
+          <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">CNC Routing</span>
         </div>
       </a>
-      <a href="/services/shelving-trim-brass/" class="flex-1 relative overflow-hidden group block">
+      <a href="/services/coatings-finishes/" class="flex-1 relative overflow-hidden group block">
         <img src="{% static 'images/projects/shelving-01.jpg' %}" alt="Floating metal shelving"
              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#08111f]/70 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-4">
-          <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Floating Shelving</span>
+          <span class="text-white text-[10px] font-semibold uppercase tracking-[0.2em]">Coatings</span>
         </div>
       </a>
     </div>
@@ -121,33 +119,89 @@
 </div>
 
 
-<!-- ── SERVICES — Photo Grid ─────────────────────────────────────────── -->
-<section class="py-20 bg-white">
+<!-- ── CAPABILITIES ───────────────────────────────────────────────────── -->
+<section class="py-20 bg-[#08111f]">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-    <div class="flex items-center gap-4 mb-10">
+    <div class="flex items-center gap-4 mb-12">
       <div class="w-8 h-px bg-[#db5648]"></div>
       <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Our Capabilities</span>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4" style="gap: 3px;">
-      {% for service in services %}
-      <a href="{{ service.url }}" class="group relative block overflow-hidden" style="aspect-ratio: 4/3;">
-        <img src="{% static 'images/projects/' %}{{ service.hero_image }}.jpg"
-             alt="{{ service.name }}"
-             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#08111f] via-[#08111f]/40 to-transparent"></div>
-        <div class="absolute inset-x-0 bottom-0 p-4">
-          <p class="font-display font-black text-white text-sm lg:text-base uppercase tracking-tight leading-tight group-hover:text-[#db5648] transition-colors">{{ service.name }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
+
+      <!-- Engineered Design -->
+      <a href="/services/engineered-design/" class="group bg-[#08111f] p-8 hover:bg-[#0d1f35] transition-colors">
+        <div class="w-10 h-10 mb-6 text-[#db5648]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20h20M4 20V10l8-8 8 8v10M10 20v-6h4v6"/>
+          </svg>
         </div>
+        <h3 class="font-display font-black text-white text-xl uppercase tracking-tight mb-3 group-hover:text-[#db5648] transition-colors">Engineered Design</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Design consultation, CAD modeling, shop drawings, submittal packages, and field measurement — the full pre-production engineering scope.</p>
       </a>
-      {% endfor %}
+
+      <!-- Fabrication & Site Services -->
+      <a href="/services/fabrication-site-services/" class="group bg-[#08111f] p-8 hover:bg-[#0d1f35] transition-colors">
+        <div class="w-10 h-10 mb-6 text-[#db5648]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="0"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v5M9.5 12h5"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-black text-white text-xl uppercase tracking-tight mb-3 group-hover:text-[#db5648] transition-colors">Fabrication &amp; Site Services</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Complete in-house fabrication and commercial installation for architectural metal scopes of all sizes.</p>
+      </a>
+
+      <!-- CNC Routing -->
+      <a href="/services/cnc-routing/" class="group bg-[#08111f] p-8 hover:bg-[#0d1f35] transition-colors">
+        <div class="w-10 h-10 mb-6 text-[#db5648]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-black text-white text-xl uppercase tracking-tight mb-3 group-hover:text-[#db5648] transition-colors">CNC Routing</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Precision CNC cutting for custom perforation patterns, dimensional lettering, logo cutouts, and architectural panel components.</p>
+      </a>
+
+      <!-- Press Brake -->
+      <a href="/services/press-brake/" class="group bg-[#08111f] p-8 hover:bg-[#0d1f35] transition-colors">
+        <div class="w-10 h-10 mb-6 text-[#db5648]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 5h18M3 5v4l9 5 9-5V5"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-black text-white text-xl uppercase tracking-tight mb-3 group-hover:text-[#db5648] transition-colors">Press Brake</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Precision sheet metal bending and forming for custom trim profiles, panel returns, and complex architectural components.</p>
+      </a>
+
+      <!-- Welding -->
+      <a href="/services/welding/" class="group bg-[#08111f] p-8 hover:bg-[#0d1f35] transition-colors">
+        <div class="w-10 h-10 mb-6 text-[#db5648]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L8 8h3v4l-4 3 1 2 4-3 4 3 1-2-4-3V8h3L12 2zM6 20h12"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-black text-white text-xl uppercase tracking-tight mb-3 group-hover:text-[#db5648] transition-colors">Welding</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Aluminum TIG, stainless steel, mild steel, and brass welding for structural and architectural metal scopes.</p>
+      </a>
+
+      <!-- Coatings & Finishes -->
+      <a href="/services/coatings-finishes/" class="group bg-[#08111f] p-8 hover:bg-[#0d1f35] transition-colors">
+        <div class="w-10 h-10 mb-6 text-[#db5648]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-black text-white text-xl uppercase tracking-tight mb-3 group-hover:text-[#db5648] transition-colors">Coatings &amp; Finishes</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Powder coating, brushed finishes, anodizing, and painted panel systems for commercial architectural metalwork.</p>
+      </a>
+
     </div>
 
-    <div class="mt-6 flex items-center justify-between">
-      <p class="text-slate-400 text-sm">8 specialty services — all in-house, all custom</p>
-      <a href="/projects/" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#db5648] hover:text-[#c7313f] transition-colors">
-        View Project Showcase
+    <div class="mt-8 flex items-center justify-between">
+      <p class="text-slate-500 text-sm">Six capabilities — all in-house, all custom</p>
+      <a href="/services/" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#db5648] hover:text-[#c7313f] transition-colors">
+        All Services
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>

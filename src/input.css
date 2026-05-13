@@ -20,3 +20,22 @@
   animation: marquee 40s linear infinite;
   will-change: transform;
 }
+
+/* Nav dropdowns — CSS :hover, no Tailwind group-hover dependency */
+.nav-dropdown {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.nav-panel {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.nav-dropdown:hover .nav-panel {
+  opacity: 1;
+  visibility: visible;
+}
