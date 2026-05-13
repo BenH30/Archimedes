@@ -60,12 +60,10 @@ All pages extend `templates/base.html`. Page sections follow this pattern:
 | About | `/about/` | ✅ Complete |
 | Quote / Contact | `/quote/` | ✅ Complete (form renders; email sending not yet wired) |
 | Privacy Policy | `/privacy/` | ✅ Complete |
-| Architectural Metalwork | `/services/architectural-metalwork/` | ✅ Complete |
-| Metal Wall Panels | `/services/metal-wall-panels/` | ✅ Complete |
-| Custom Metal Signage | `/services/custom-metal-signage/` | ✅ Complete |
-| Fencing, Screens & Enclosures | `/services/fencing-screens-enclosures/` | ✅ Complete |
-| Shelving, Trim & Brass Features | `/services/shelving-trim-brass/` | ✅ Complete |
-| Press Brake & Forming | `/services/press-brake-forming/` | ✅ Complete |
+| Engineered Design | `/services/engineered-design/` | ✅ Complete |
+| Fabrication & Site Services | `/services/fabrication-site-services/` | ✅ Complete |
+| CNC Routing | `/services/cnc-routing/` | ✅ Complete |
+| Press Brake | `/services/press-brake/` | ✅ Complete |
 | Welding | `/services/welding/` | ✅ Complete |
 | Coatings & Finishes | `/services/coatings-finishes/` | ✅ Complete |
 | Projects / Gallery | `/projects/` | ✅ Complete (21 projects, 7 categories from fabrication catalog) |

@@ -60,12 +60,10 @@
       "@type": "OfferCatalog",
       "name": "Architectural Metal Fabrication Services",
       "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Architectural Metalwork"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Metal Wall Panels"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Metal Signage"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fencing, Screens & Enclosures"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shelving, Trim & Brass Features"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Press Brake & Forming"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Engineered Design"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fabrication & Site Services"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "CNC Routing"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Press Brake"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Welding"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coatings & Finishes"}}
       ]
@@ -78,15 +76,46 @@
 <body class="bg-white text-slate-800 font-sans antialiased">
 
   <!-- Navigation -->
-  <nav class="bg-[#08111f] text-white border-b border-white/5">
+  <nav class="bg-[#08111f] text-white border-b border-white/5 relative z-40">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
       <div class="flex items-center justify-between h-16">
         <a href="/" class="flex items-center">
-          <img src="{% static 'images/logo-white.png' %}" alt="Archimedes Metals" class="h-9 w-auto">
+          <img src="{% static 'images/logo-white.png' %}" alt="Archimedes Metals" class="{% block nav_logo_class %}h-9{% endblock %} w-auto">
         </a>
         <div class="hidden md:flex items-center gap-10">
-          <a href="/services/" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors">Services</a>
-          <a href="/projects/" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors">Projects</a>
+
+          <!-- Services dropdown -->
+          <div class="relative group">
+            <a href="/services/" class="flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors pb-3">
+              Services
+              <svg class="w-3 h-3 mt-px" fill="none" viewBox="0 0 10 6" stroke="currentColor" stroke-width="2"><path d="M1 1l4 4 4-4"/></svg>
+            </a>
+            <div class="absolute top-full left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div class="bg-[#0d1f35] border border-white/10 shadow-2xl py-2 min-w-[260px]">
+                {% for svc in nav_services %}
+                <a href="{{ svc.url }}" class="block px-5 py-2.5 text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-colors leading-snug">{{ svc.name }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Projects dropdown -->
+          <div class="relative group">
+            <a href="/projects/" class="flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors pb-3">
+              Projects
+              <svg class="w-3 h-3 mt-px" fill="none" viewBox="0 0 10 6" stroke="currentColor" stroke-width="2"><path d="M1 1l4 4 4-4"/></svg>
+            </a>
+            <div class="absolute top-full left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div class="bg-[#0d1f35] border border-white/10 shadow-2xl py-2 min-w-[220px]">
+                <a href="/projects/" class="block px-5 py-2.5 text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-colors">All Projects</a>
+                <div class="border-t border-white/10 my-1"></div>
+                {% for cat in nav_project_categories %}
+                <a href="/projects/#{{ cat.anchor }}" class="block px-5 py-2.5 text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-colors">{{ cat.name }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
           <a href="/about/" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors">About</a>
           <a href="/quote/" class="bg-[#db5648] hover:bg-[#c7313f] text-white text-xs font-semibold px-6 py-3 uppercase tracking-[0.2em] transition-colors">Request a Quote</a>
         </div>
@@ -107,11 +136,12 @@
         <div>
           <h3 class="text-white text-xs font-semibold uppercase tracking-[0.25em] mb-5">Services</h3>
           <ul class="space-y-3 text-sm">
-            <li><a href="/services/architectural-metalwork/" class="hover:text-[#db5648] transition-colors">Architectural Metalwork</a></li>
-            <li><a href="/services/metal-wall-panels/" class="hover:text-[#db5648] transition-colors">Metal Wall Panels</a></li>
-            <li><a href="/services/custom-metal-signage/" class="hover:text-[#db5648] transition-colors">Custom Metal Signage</a></li>
-            <li><a href="/services/fencing-screens-enclosures/" class="hover:text-[#db5648] transition-colors">Fencing, Screens &amp; Enclosures</a></li>
-            <li><a href="/services/shelving-trim-brass/" class="hover:text-[#db5648] transition-colors">Shelving, Trim &amp; Brass Features</a></li>
+            <li><a href="/services/engineered-design/" class="hover:text-[#db5648] transition-colors">Engineered Design</a></li>
+            <li><a href="/services/fabrication-site-services/" class="hover:text-[#db5648] transition-colors">Fabrication &amp; Site Services</a></li>
+            <li><a href="/services/cnc-routing/" class="hover:text-[#db5648] transition-colors">CNC Routing</a></li>
+            <li><a href="/services/press-brake/" class="hover:text-[#db5648] transition-colors">Press Brake</a></li>
+            <li><a href="/services/welding/" class="hover:text-[#db5648] transition-colors">Welding</a></li>
+            <li><a href="/services/coatings-finishes/" class="hover:text-[#db5648] transition-colors">Coatings &amp; Finishes</a></li>
           </ul>
         </div>
         <div>

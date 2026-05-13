@@ -57,18 +57,18 @@
 {% block content %}
 
 <!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
-<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+<section class="bg-[#08111f] text-white py-14 relative overflow-hidden">
   <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
   <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
   <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="flex items-center gap-3 mb-6">
+    <div class="flex items-center gap-3 mb-4">
       <div class="w-8 h-px bg-[#db5648]"></div>
       <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Custom Metalwork — Dallas–Fort Worth</span>
     </div>
-    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
+    <h1 class="font-display font-black text-3xl lg:text-5xl uppercase leading-tight tracking-tight mb-4">
       {{ service.name }}
     </h1>
-    <p class="text-slate-400 text-lg max-w-xl leading-relaxed">{{ service.tagline }}</p>
+    <p class="text-slate-400 text-base max-w-xl leading-relaxed">{{ service.tagline }}</p>
   </div>
 </section>
 

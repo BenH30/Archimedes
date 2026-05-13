@@ -1,17 +1,20 @@
 import json
+import logging
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
 
+logger = logging.getLogger(__name__)
+
 
 SERVICES = [
-    {"name": "Architectural Metalwork", "slug": "architectural-metalwork", "hero_image": "outdoor-canopy", "description": "Custom metal features for commercial interiors and exteriors — panels, trim, framing, and design-forward details.", "url": "/services/architectural-metalwork/"},
-    {"name": "Metal Wall Panels", "slug": "metal-wall-panels", "hero_image": "surface-cover-03", "description": "Architectural metal wall panel systems and cladding for commercial interiors and building exteriors.", "url": "/services/metal-wall-panels/"},
-    {"name": "Custom Metal Signage", "slug": "custom-metal-signage", "hero_image": "signage-eagle-02", "description": "Interior and exterior metal signs, logo features, and building identification for commercial spaces.", "url": "/services/custom-metal-signage/"},
-    {"name": "Fencing, Screens & Enclosures", "slug": "fencing-screens-enclosures", "hero_image": "fence-louvered-01", "description": "Post-and-panel fencing, privacy screens, dumpster enclosures, and HVAC equipment screens.", "url": "/services/fencing-screens-enclosures/"},
-    {"name": "Shelving, Trim & Brass Features", "slug": "shelving-trim-brass", "hero_image": "brass-chandelier", "description": "Floating metal shelves, custom-fit framing, decorative trim, and high-finish brass features.", "url": "/services/shelving-trim-brass/"},
-    {"name": "Press Brake & Forming", "slug": "press-brake-forming", "hero_image": "trim-03", "description": "Precision sheet metal bending and forming for custom aluminum, stainless steel, and steel components.", "url": "/services/press-brake-forming/"},
-    {"name": "Welding", "slug": "welding", "hero_image": "partition-01", "description": "Aluminum TIG, stainless steel, and commercial welding for architectural and structural metal scopes.", "url": "/services/welding/"},
-    {"name": "Coatings & Finishes", "slug": "coatings-finishes", "hero_image": "trim-02", "description": "Powder coating, brushed finishes, anodizing, polishing, and painted aluminum panels.", "url": "/services/coatings-finishes/"},
+    {"name": "Engineered Design", "slug": "engineered-design", "hero_image": "framing-01", "description": "Design consultation, CAD modeling, shop drawings, submittal packages, and field measurement — the full pre-production engineering scope.", "url": "/services/engineered-design/"},
+    {"name": "Fabrication & Site Services", "slug": "fabrication-site-services", "hero_image": "outdoor-canopy", "description": "Complete in-house fabrication and commercial installation for architectural metal scopes of all sizes.", "url": "/services/fabrication-site-services/"},
+    {"name": "CNC Routing", "slug": "cnc-routing", "hero_image": "partition-02", "description": "Precision CNC cutting for custom perforation patterns, dimensional lettering, logo cutouts, and architectural panel components.", "url": "/services/cnc-routing/"},
+    {"name": "Press Brake", "slug": "press-brake", "hero_image": "trim-03", "description": "Precision sheet metal bending and forming for custom trim profiles, panel returns, and complex architectural components.", "url": "/services/press-brake/"},
+    {"name": "Welding", "slug": "welding", "hero_image": "partition-01", "description": "Aluminum TIG, stainless steel, mild steel, and brass welding for structural and architectural metal scopes.", "url": "/services/welding/"},
+    {"name": "Coatings & Finishes", "slug": "coatings-finishes", "hero_image": "trim-02", "description": "Powder coating, brushed finishes, anodizing, and painted panel systems for commercial architectural metalwork.", "url": "/services/coatings-finishes/"},
 ]
 
 AUDIENCES = [
@@ -40,7 +43,7 @@ PROJECTS = [
     {
         "category": "Panel Wall Systems",
         "slug": "panel-wall-systems",
-        "service_url": "/services/architectural-metalwork/",
+        "service_url": "/services/fabrication-site-services/",
         "description": "Large-scale canopies, enclosing and non-enclosing partitions",
         "items": [
             {
@@ -69,7 +72,7 @@ PROJECTS = [
     {
         "category": "Interior & Exterior Signage",
         "slug": "signage",
-        "service_url": "/services/custom-metal-signage/",
+        "service_url": "/services/fabrication-site-services/",
         "description": "Wayfinding signs, wall hangings, property and community identification",
         "items": [
             {
@@ -105,7 +108,7 @@ PROJECTS = [
     {
         "category": "Surface Covers",
         "slug": "surface-covers",
-        "service_url": "/services/metal-wall-panels/",
+        "service_url": "/services/cnc-routing/",
         "description": "Paneling that adds decorative flair to walls, vent hoods, counter faces, and more",
         "items": [
             {
@@ -134,7 +137,7 @@ PROJECTS = [
     {
         "category": "Post-and-Panel Fencing",
         "slug": "fencing",
-        "service_url": "/services/fencing-screens-enclosures/",
+        "service_url": "/services/fabrication-site-services/",
         "description": "Louvered and flat panel fence systems for privacy, HVAC screening, and access control",
         "items": [
             {
@@ -156,7 +159,7 @@ PROJECTS = [
     {
         "category": "Floating Shelving Units",
         "slug": "floating-shelving",
-        "service_url": "/services/shelving-trim-brass/",
+        "service_url": "/services/fabrication-site-services/",
         "description": "Shelving with no visible supports",
         "items": [
             {
@@ -178,7 +181,7 @@ PROJECTS = [
     {
         "category": "Custom-Fit Framing & Trim",
         "slug": "framing-trim",
-        "service_url": "/services/architectural-metalwork/",
+        "service_url": "/services/press-brake/",
         "description": "Aluminum extrusions that provide visual transitions between focal points and their surroundings",
         "items": [
             {
@@ -221,7 +224,7 @@ PROJECTS = [
     {
         "category": "Brass Features",
         "slug": "brass-features",
-        "service_url": "/services/shelving-trim-brass/",
+        "service_url": "/services/fabrication-site-services/",
         "description": "High-finish brass fabrication for chandeliers, handrails, and architectural details",
         "items": [
             {
@@ -253,167 +256,105 @@ QUOTE_NEEDS = [
 ]
 
 SERVICES_DETAIL = {
-    "architectural-metalwork": {
-        "name": "Architectural Metalwork",
-        "tagline": "Custom metal for commercial interiors and exteriors",
+    "engineered-design": {
+        "name": "Engineered Design",
+        "tagline": "Design, documentation, and engineering for custom metal scopes",
         "description": [
-            "Architectural metalwork is the category that ties everything together — custom metal features that are visible, structural, and designed to support the architecture and experience of the space. We fabricate decorative and functional metal elements for commercial interiors, building exteriors, lobbies, retail environments, and hospitality spaces.",
-            "Our work ranges from large-scale canopy systems and decorative partition walls to fireplace surrounds, elevator lobby panels, and custom-fit architectural trim. If metal needs to be seen and judged — and not just hidden behind a wall — we treat it with the attention it deserves.",
+            "Every successful custom metal project starts with engineering it right. We bring design consultation, CAD modeling, field measurement, shop drawing production, and submittal support together into one coordinated pre-production package — the work that happens before any material is cut.",
+            "We work directly with architects, interior designers, and general contractors to interpret design intent, resolve fabrication constraints, and produce drawings the project team can review, approve, and build from. Design is not a step we skip or hand off — it's how we prevent expensive problems downstream.",
         ],
         "capabilities": [
-            "Decorative partition and panel wall systems",
-            "Commercial lobby and reception metalwork",
-            "Exterior canopies and architectural features",
-            "Field measurement and installation coordination",
-            "Shop drawings and submittal packages",
-            "Custom perforation patterns and panel systems",
+            "Design consultation and concept development",
+            "CAD modeling and 3D design",
+            "Shop drawings and fabrication documentation",
+            "Submittal packages for architect and owner approval",
+            "Field measurement and as-built documentation",
+            "Finish samples and approval coordination",
         ],
-        "featured_images": ["outdoor-canopy", "partition-01", "framing-01", "surface-cover-04"],
+        "featured_images": ["framing-01", "framing-02", "partition-02", "trim-01"],
         "faqs": [
             {
-                "question": "What types of architectural metalwork does Archimedes Metals fabricate?",
-                "answer": "We fabricate custom metal features for commercial interiors and exteriors, including decorative partition and panel wall systems, outdoor canopy structures, lobby and reception metalwork, fireplace surrounds, elevator lobby panels, and architectural trim. We work in aluminum, stainless steel, mild steel, and brass — and handle field measurement, shop drawings, finish samples, and installation coordination as part of the full scope.",
+                "question": "What does Archimedes Metals include in its Engineered Design service?",
+                "answer": "Engineered Design covers the full pre-production phase of a custom metal project: design consultation, CAD modeling, shop drawing production, submittal package preparation, field measurement, finish sample coordination, and approval documentation. It's the process that converts an architect's design intent into a buildable, approvable fabrication package.",
             },
             {
                 "question": "Do you provide shop drawings and submittal packages for commercial metalwork?",
-                "answer": "Yes. Shop drawings, finish samples, and submittal packages are a standard part of our workflow for commercial architectural metalwork. These documents support the architect's and general contractor's coordination process, reduce field surprises, and give the project team the documentation needed for approval and installation.",
+                "answer": "Yes. Shop drawings, finish samples, and submittal packages are a standard part of our workflow for commercial scopes. These documents support the architect's and general contractor's coordination process, reduce field surprises, and give the project team the documentation needed for approval and installation.",
             },
             {
-                "question": "Can you handle field measurement and installation coordination for architectural metal scopes?",
-                "answer": "Yes. We offer field measurement, installation planning, and installation coordination. For large-scale or precision-fit scopes — canopy systems, panel walls, lobby features — measuring in the field before fabrication ensures the finished pieces fit the as-built conditions and reduces costly modifications.",
+                "question": "Can you field-measure before fabrication on commercial construction projects?",
+                "answer": "Yes. We offer field measurement and as-built documentation as part of our design service. For precision-fit scopes — canopy systems, panel walls, trim profiles, lobby features — measuring in the field before fabrication ensures pieces fit the as-built conditions and eliminates costly modifications at installation.",
             },
         ],
     },
-    "metal-wall-panels": {
-        "name": "Metal Wall Panels",
-        "tagline": "Architectural cladding for interiors and exteriors",
+    "fabrication-site-services": {
+        "name": "Fabrication & Site Services",
+        "tagline": "Complete fabrication from raw material to finished installation",
         "description": [
-            "Metal wall panels give commercial spaces a distinctive, durable, and low-maintenance surface that performs as well as it looks. We fabricate panel systems for building exteriors, commercial interiors, elevator lobbies, and retail environments — with full control over material, thickness, perforation pattern, and finish.",
-            "From perforated aluminum panels with custom cutout patterns to solid powder-coated cladding, we engineer each panel system for clean installation, precise alignment, and long-term performance in commercial environments.",
+            "Most of our work is delivered as a complete scope — we fabricate the piece and we install it. Fabrication & Site Services covers the full range of custom metal work: cutting, forming, welding, finishing, delivery, and field installation for commercial architectural metal scopes of all sizes.",
+            "From large-scale canopy structures and decorative wall systems to perforated panels, signage, fencing, and interior features, we manage the complete process in-house and coordinate directly with the general contractor and other trades in the field.",
         ],
         "capabilities": [
-            "Perforated aluminum panel systems",
-            "Solid and patterned cladding",
-            "Interior and exterior applications",
-            "Custom perforation patterns and dimensions",
-            "Powder coat, anodized, and brushed finishes",
-            "Button-mount and hidden-fastener installation systems",
+            "Complete in-house fabrication from concept to delivery",
+            "Commercial interior and exterior installation",
+            "Field measurement, delivery, and site coordination",
+            "Material procurement and job-spec sourcing",
+            "Large-format and complex multi-component assembly",
+            "Multi-trade coordination for commercial construction scopes",
         ],
-        "featured_images": ["surface-cover-03", "partition-02", "surface-cover-01-02", "surface-cover-04"],
+        "featured_images": ["outdoor-canopy", "partition-01", "fence-louvered-01", "brass-chandelier"],
         "faqs": [
             {
-                "question": "What materials are available for architectural metal wall panels?",
-                "answer": "We most commonly fabricate metal wall panels in aluminum at ⅛″ or ¼″ thickness depending on the span and application. We also work in stainless steel and mild steel. Aluminum offers the best combination of weight, workability, and finish options for most interior and exterior panel applications.",
+                "question": "Does Archimedes Metals handle both fabrication and installation?",
+                "answer": "Yes. We deliver most scopes as a complete package — fabrication and installation. We handle field measurement, shop fabrication, delivery, and field installation, coordinating directly with the general contractor and other trades. For clients who need fabrication only (no installation), we can deliver finished pieces ready for owner or GC installation.",
             },
             {
-                "question": "Can you create custom perforation patterns for metal wall panels?",
-                "answer": "Yes. We produce custom perforation patterns including geometric repeating patterns — squares, ellipses, triangles — open-field perforations, and company-specific logo cutouts. Panel perforation is engineered to balance the visual design intent with the structural requirements of the panel span.",
+                "question": "What types of commercial metal scopes does Archimedes Metals fabricate and install?",
+                "answer": "We fabricate and install decorative partition and panel wall systems, outdoor canopy structures, signage, post-and-panel fencing and enclosures, floating shelving, architectural trim, brass chandeliers, and a wide range of custom interior and exterior commercial metalwork. If it's custom metal and it needs to be built and installed, we can scope it.",
             },
             {
-                "question": "Are metal wall panels suitable for both interior and exterior applications?",
-                "answer": "Yes. We fabricate panel systems for interior environments — elevator lobbies, retail spaces, commercial kitchens, office reception areas — and exterior applications including building cladding and outdoor canopy faces. Material selection, panel thickness, fastener systems, and finish coatings are specified based on the exposure environment.",
+                "question": "How do you coordinate with general contractors and other trades on commercial projects?",
+                "answer": "We work as a direct subcontractor to the general contractor. We provide shop drawings and submittals for approval, confirm field dimensions before fabrication, communicate schedule and delivery milestones, and coordinate access and sequencing with other trades during installation. Clear communication is a core part of how we operate on commercial sites.",
             },
         ],
     },
-    "custom-metal-signage": {
-        "name": "Custom Metal Signage",
-        "tagline": "Interior and exterior identification built to be seen",
+    "cnc-routing": {
+        "name": "CNC Routing",
+        "tagline": "Precision cutting for patterns, shapes, and architectural panel components",
         "description": [
-            "Custom metal signage is one of the most visible expressions of a brand, a building, or a community. We fabricate interior and exterior metal signs, dimensional logo features, building identification systems, and wayfinding programs for commercial properties, office buildings, retail spaces, and residential communities.",
-            "Our signage work combines precision fabrication with design sensitivity — clean edges, integrated lighting, hidden mounting, and finishes that hold up to the environment. We work with architects, property owners, sign companies, and general contractors to deliver signage that looks intentional and holds its quality over time.",
+            "CNC routing is how we turn sheet metal into custom panels, dimensional lettering, perforation patterns, and precision-fit architectural components. Our CNC router cuts aluminum, mild steel, and stainless steel to exact dimensions with consistent accuracy across full production runs.",
+            "CNC capability is central to our perforated panel work, custom signage, and architectural trim. It's how a 28-foot wall panel maintains a consistent diamond perforation pattern with no visible misalignment, and how dimensional sign letters stay identical when multiple runs are fabricated for a phased project.",
         ],
         "capabilities": [
-            "Dimensional building and suite identification",
-            "Community entry and monument signage",
-            "Backlit and halo-lit metal panels",
-            "Cut-through lettering and logo features",
-            "Wayfinding and directional systems",
-            "Interior wall-mounted and suspended signs",
+            "Custom perforation patterns in aluminum and steel",
+            "Dimensional lettering and logo cutouts",
+            "Precision-fit architectural panel components",
+            "Complex geometric shapes and repeating patterns",
+            "Consistent production-run accuracy",
+            "Fabrication from CAD file or reference drawing",
         ],
-        "featured_images": ["signage-eagle-02", "signage-wildflower", "signage-wayfinding", "signage-eagle-03"],
+        "featured_images": ["partition-02", "surface-cover-03", "partition-01", "signage-eagle-02"],
         "faqs": [
             {
-                "question": "What types of custom metal signage does Archimedes Metals fabricate?",
-                "answer": "We fabricate building and suite identification signs, community and property entry monuments, dimensional logo features, wayfinding and directional sign programs, and interior wall-mounted or suspended metal signs. Our signage work spans commercial office buildings, retail spaces, residential communities, and hospitality properties across Dallas-Fort Worth.",
+                "question": "What materials can Archimedes Metals CNC rout?",
+                "answer": "Our CNC router handles aluminum, mild steel, and stainless steel at commercial architectural gauges — from lightweight sheet aluminum to heavier plate. Aluminum is the most common material for perforated panel and signage work due to its weight and workability, but we regularly route mild steel and stainless for structural and decorative components as well.",
             },
             {
-                "question": "Can you integrate lighting into custom metal signs?",
-                "answer": "Yes. We fabricate backlit metal panels, halo-lit lettering with cut-through characters, and signs with integrated LED systems. Lighting is engineered as part of the sign assembly — not added as an afterthought — so the mounting, wiring, and visual effect are all coordinated from the start.",
+                "question": "Can you create custom perforation patterns for architectural panels?",
+                "answer": "Yes. We produce custom perforation patterns including geometric repeating patterns — squares, ellipses, triangles, diamonds — open-field perforations, and company-specific logo cutouts. Patterns are engineered to balance design intent with the structural requirements of the panel span and the material thickness.",
             },
             {
-                "question": "Do you work with sign companies as a metal fabrication subcontractor?",
-                "answer": "Yes. We regularly partner with sign companies that need specialty metal components — dimensional letters, backlit panels, monument sign frames — without adding in-house fabrication capacity. We work as a subcontractor, protecting your customer relationship while delivering the metal capability your project requires.",
+                "question": "Can you fabricate CNC-routed components from a CAD file or drawing?",
+                "answer": "Yes. We work from CAD files, architect drawings, or reference sketches to produce CNC-cut components. For complex or precision-fit work, we model the part in CAD before cutting to verify geometry and fit. We can also develop CNC patterns from a design brief if no file exists yet.",
             },
         ],
     },
-    "fencing-screens-enclosures": {
-        "name": "Fencing, Screens & Enclosures",
-        "tagline": "Post-and-panel systems for screening, privacy, and access",
-        "description": [
-            "We design and fabricate post-and-panel fencing, privacy screens, dumpster enclosures, and HVAC equipment screening for commercial properties. Our systems are engineered for durability, designed for appearance, and built to handle the specific site conditions and functional requirements of each project.",
-            "Whether you need a 275-foot perimeter fence for a service area, a louvered privacy screen for a residential entryway, or a custom gate system with controlled access, we handle the full scope — posts, panels, gates, and finish — with field measurement and installation coordination.",
-        ],
-        "capabilities": [
-            "Louvered and flat panel post-and-panel systems",
-            "HVAC and equipment screening enclosures",
-            "Dumpster and service area enclosures",
-            "Custom saloon-style and swing gates",
-            "Residential and commercial privacy screens",
-            "Powder coat finishes in custom colors",
-        ],
-        "featured_images": ["fence-louvered-01", "fence-louvered-02"],
-        "faqs": [
-            {
-                "question": "What types of commercial metal fencing and enclosures does Archimedes Metals fabricate?",
-                "answer": "We fabricate post-and-panel fencing systems with louvered or flat panels, HVAC and mechanical equipment screening enclosures, dumpster and service area enclosures, and residential and commercial privacy screens. Systems are powder coated in custom colors and include gate options for access control.",
-            },
-            {
-                "question": "Can you accommodate sloped or graded sites for metal fencing installations?",
-                "answer": "Yes. Grade changes are a routine part of our fencing scopes. We field-measure every post location, anchor and level each post individually, and panel to the slope rather than stepping the fence line where the design requires a continuous appearance. We've installed continuous fencing runs over 275 feet with significant grade changes across the length.",
-            },
-            {
-                "question": "What gate options are available with your enclosure and fencing systems?",
-                "answer": "We fabricate custom gate panels to match the enclosure system — saloon-style swing gates for service access, single and double swing gates for pedestrian and equipment entry, and push gates with controlled access. Gate hardware is specified for the load and use frequency of each installation.",
-            },
-        ],
-    },
-    "shelving-trim-brass": {
-        "name": "Shelving, Trim & Brass Features",
-        "tagline": "High-finish metal details that define a space",
-        "description": [
-            "Some of our most distinctive work happens at the small scale — a floating shelf that appears to have no supports, a piece of fireplace trim that transitions between two completely different materials with no exposed fasteners, a brushed brass chandelier that stretches 25 feet and makes a restaurant feel complete.",
-            "We fabricate floating metal shelving with hidden mounting systems, decorative trim and transitions for tile, glass, stone, and millwork, and high-finish brass features including chandeliers, handrails, and architectural detail work. These are the pieces that get photographed, noticed, and remembered.",
-        ],
-        "capabilities": [
-            "Floating shelving with concealed mounting systems",
-            "Decorative trim and architectural transitions",
-            "Brushed brass fabrication — chandeliers, rails, features",
-            "Anodized and specialty finishes",
-            "Fireplace and feature wall surrounds",
-            "ADA-compliant railing and handrail systems",
-        ],
-        "featured_images": ["brass-chandelier", "shelving-01", "trim-01", "brass-handrails"],
-        "faqs": [
-            {
-                "question": "How do Archimedes Metals' floating metal shelves achieve the no-bracket appearance?",
-                "answer": "Our floating shelves use concealed mounting systems — internal frames or hidden mounting tabs that anchor inside the wall and carry the shelf load invisibly. The visible shelf profile is an aluminum or steel sheath over the structural frame, with no exposed hardware. The result is a shelf that appears to float off the wall with no visible means of support.",
-            },
-            {
-                "question": "What brass fabrication work does Archimedes Metals offer?",
-                "answer": "We fabricate custom brass features for commercial interiors, including statement chandeliers, handrails and stair rails, ADA-compliant railing systems, and decorative architectural detail work. Our brass work is fabricated to a brushed or polished finish and engineered for both structural performance and visual quality.",
-            },
-            {
-                "question": "Can you fabricate architectural trim to match existing materials or transitions?",
-                "answer": "Yes. We regularly fabricate custom trim profiles to create clean transitions between dissimilar materials — tile and glass, stone and drywall, wood and metal. For finish matching, we provide physical samples prior to fabrication so the installed piece meets the design intent. Anodized tones, powder coat colors, and mechanical finishes can all be specified to a design standard.",
-            },
-        ],
-    },
-    "press-brake-forming": {
-        "name": "Press Brake & Forming",
+    "press-brake": {
+        "name": "Press Brake",
         "tagline": "Precision sheet metal bending for complex custom profiles",
         "description": [
             "Our in-house press brake is a 12-foot, 140-ton capacity machine capable of forming complex bends in aluminum, mild steel, and stainless steel. This allows us to produce custom sheet metal components with tight tolerances, consistent profiles, and repeatable accuracy — without outsourcing to a secondary shop.",
-            "Press brake and forming capability is the foundation of most of our architectural work. Custom trim profiles, panel returns, enclosure components, and structural frames all require precision bending. Having this in-house gives us control over quality, lead time, and cost.",
+            "Press brake capability is the foundation of most of our architectural work. Custom trim profiles, panel returns, enclosure components, and structural frames all require precision bending. Having this in-house gives us direct control over quality, lead time, and cost.",
         ],
         "capabilities": [
             "12-foot, 140-ton press brake capacity",
@@ -423,7 +364,7 @@ SERVICES_DETAIL = {
             "Tight-tolerance work for architectural applications",
             "CAD modeling prior to forming for fit verification",
         ],
-        "featured_images": ["trim-03", "framing-01", "outdoor-canopy", "partition-02"],
+        "featured_images": ["trim-03", "framing-01", "trim-02", "partition-02"],
         "faqs": [
             {
                 "question": "What is Archimedes Metals' press brake capacity?",
@@ -518,14 +459,52 @@ def about(request):
 
 def contact(request):
     if request.method == "POST":
-        return render(request, "contact.html", {
-            "submitted": True,
-            "quote_needs": QUOTE_NEEDS,
-        })
-    return render(request, "contact.html", {
-        "submitted": False,
-        "quote_needs": QUOTE_NEEDS,
-    })
+        name = request.POST.get("name", "").strip()
+        company = request.POST.get("company", "").strip()
+        email = request.POST.get("email", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        role = request.POST.get("role", "").strip()
+        location = request.POST.get("location", "").strip()
+        timeline = request.POST.get("timeline", "").strip()
+        service = request.POST.get("service", "").strip()
+        drawings_available = request.POST.get("drawings_available", "").strip()
+        installation = request.POST.get("installation", "").strip()
+        description = request.POST.get("description", "").strip()
+
+        subject = f"Quote Request — {name}" + (f" | {company}" if company else "")
+        body = (
+            f"New quote request submitted via archimedesmetals.com\n"
+            f"{'='*50}\n\n"
+            f"Name:              {name}\n"
+            f"Company:           {company}\n"
+            f"Email:             {email}\n"
+            f"Phone:             {phone}\n"
+            f"Role:              {role}\n\n"
+            f"Project Location:  {location}\n"
+            f"Timeline:          {timeline}\n"
+            f"Service Needed:    {service}\n"
+            f"Drawings:          {drawings_available}\n"
+            f"Installation:      {installation}\n\n"
+            f"Project Description:\n{description}\n"
+        )
+
+        try:
+            msg = EmailMessage(
+                subject=subject,
+                body=body,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[settings.CONTACT_EMAIL],
+                reply_to=[email] if email else [],
+            )
+            for f in request.FILES.getlist("attachments"):
+                msg.attach(f.name, f.read(), f.content_type)
+            msg.send()
+            return render(request, "contact.html", {"submitted": True, "quote_needs": QUOTE_NEEDS})
+        except Exception:
+            logger.exception("Failed to send quote request email")
+            return render(request, "contact.html", {"submitted": False, "send_error": True, "quote_needs": QUOTE_NEEDS})
+
+    return render(request, "contact.html", {"submitted": False, "quote_needs": QUOTE_NEEDS})
 
 
 def privacy(request):

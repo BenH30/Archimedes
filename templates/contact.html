@@ -8,18 +8,18 @@
 {% block content %}
 
 <!-- ── PAGE HERO ─────────────────────────────────────────────────────── -->
-<section class="bg-[#08111f] text-white py-24 relative overflow-hidden">
+<section class="bg-[#08111f] text-white py-14 relative overflow-hidden">
   <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 48px);"></div>
   <div class="absolute left-0 top-0 bottom-0 w-[3px]" style="background: linear-gradient(to bottom, transparent, #db5648 30%, #db5648 70%, transparent);"></div>
   <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="flex items-center gap-3 mb-6">
+    <div class="flex items-center gap-3 mb-4">
       <div class="w-8 h-px bg-[#db5648]"></div>
       <span class="text-[#db5648] text-xs font-semibold uppercase tracking-[0.35em]">Get in Touch</span>
     </div>
-    <h1 class="font-display font-black text-5xl lg:text-7xl uppercase leading-none tracking-tight mb-6">
-      Request<br>a <span class="text-[#db5648]">Quote</span>
+    <h1 class="font-display font-black text-4xl lg:text-5xl uppercase leading-none tracking-tight mb-4">
+      Request a <span class="text-[#db5648]">Quote</span>
     </h1>
-    <p class="text-slate-400 text-lg max-w-xl leading-relaxed">
+    <p class="text-slate-400 text-base max-w-xl leading-relaxed">
       Share your drawings, sketches, or photos. We'll respond quickly with a clear conversation about scope, timeline, and what's possible.
     </p>
   </div>
@@ -71,7 +71,15 @@
           <p class="text-slate-500 leading-relaxed max-w-md mx-auto">We'll review your project details and be in touch shortly. If you have additional drawings or photos to share, reply to the confirmation email.</p>
         </div>
 
-        {% else %}
+        {% elif send_error %}
+        <div class="bg-red-50 border border-red-200 p-8 mb-6">
+          <p class="text-red-700 text-sm font-semibold">There was a problem sending your request. Please email us directly at <a href="mailto:info@archimedesmetals.com" class="underline">info@archimedesmetals.com</a> or try again.</p>
+        </div>
+
+        {% endif %}
+
+        {% if not submitted %}
+
         <form method="post" enctype="multipart/form-data" class="space-y-6">
           {% csrf_token %}
 
@@ -129,13 +137,13 @@
             <select name="service" class="w-full border border-slate-200 px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#db5648] transition-colors bg-white">
               <option value="">Select a service…</option>
               <option>Architectural Metalwork</option>
-              <option>Metal Wall Panels</option>
+              <option>Custom Metal Wall Panels &amp; Cladding</option>
+              <option>Commercial Metal Screens, Fencing &amp; Enclosures</option>
               <option>Custom Metal Signage</option>
-              <option>Fencing, Screens &amp; Enclosures</option>
-              <option>Shelving, Trim &amp; Brass Features</option>
-              <option>Press Brake &amp; Forming</option>
-              <option>Welding</option>
-              <option>Coatings &amp; Finishes</option>
+              <option>Custom Metal Shelving, Trim &amp; Interior Features</option>
+              <option>Press Brake &amp; Metal Forming Services</option>
+              <option>Aluminum, Stainless Steel &amp; Specialty Welding</option>
+              <option>Architectural Metal Finishes &amp; Coatings</option>
               <option>Multiple / Not Sure</option>
             </select>
           </div>
