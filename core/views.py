@@ -499,10 +499,35 @@ def contact(request):
             for f in request.FILES.getlist("attachments"):
                 msg.attach(f.name, f.read(), f.content_type)
             msg.send()
-            return render(request, "contact.html", {"submitted": True, "quote_needs": QUOTE_NEEDS})
         except Exception:
             logger.exception("Failed to send quote request email")
             return render(request, "contact.html", {"submitted": False, "send_error": True, "quote_needs": QUOTE_NEEDS})
+
+        if email:
+            confirmation_body = (
+                f"Hi {name},\n\n"
+                f"Thanks for reaching out to Archimedes Metals. We've received your quote request "
+                f"and will be in touch shortly.\n\n"
+                f"Here's a summary of what you submitted:\n\n"
+                f"Service:   {service or 'Not specified'}\n"
+                f"Location:  {location or 'Not specified'}\n"
+                f"Timeline:  {timeline or 'Not specified'}\n\n"
+                f"If you have additional drawings, photos, or sketches to share, just reply to this email.\n\n"
+                f"— Archimedes Metals\n"
+                f"info@archimedesmetals.com | archimedesmetals.com\n"
+                f"2555 Nail Road, Krum, TX 76249"
+            )
+            try:
+                EmailMessage(
+                    subject="We received your quote request — Archimedes Metals",
+                    body=confirmation_body,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[email],
+                ).send()
+            except Exception:
+                logger.exception("Failed to send confirmation email to %s", email)
+
+        return render(request, "contact.html", {"submitted": True, "quote_needs": QUOTE_NEEDS})
 
     return render(request, "contact.html", {"submitted": False, "quote_needs": QUOTE_NEEDS})
 
